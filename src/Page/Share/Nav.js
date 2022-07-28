@@ -1,16 +1,29 @@
+import { signOut } from 'firebase/auth';
 import React from 'react';
-import {Link} from 'react-router-dom'
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { Link } from 'react-router-dom'
+import auth from '../../firebase.init';
 
 const Nav = () => {
+  const [user] = useAuthState(auth)
+  console.log(user)
+
+  const LongOut = () => {
+    signOut(auth)
+  }
+
   const navBar = <>
     <li><Link to="/">Item 1</Link></li>
     <li><Link to="/">Item 3</Link></li>
     <li><Link to="/">Item 1</Link></li>
     <li><Link to="/">Item 4</Link></li>
-    <li><Link to="/">Item 5</Link></li>
-    <li><Link to="/">Item 6</Link></li>
-
+    <li><Link to='/login'>Login</Link></li>
+   
   </>
+
+
+
+
   return (
     <div class="navbar bg-base-100">
       <div class="navbar-start">
