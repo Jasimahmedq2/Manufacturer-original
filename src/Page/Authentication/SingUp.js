@@ -4,18 +4,21 @@ import auth from '../../firebase.init';
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from 'react-router-dom';
 import Loading from '../Share/Loading';
+import useToken from '../../Hooks/useToken';
 
 const SignUp = () => {
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
   const { register, formState: { errors }, handleSubmit } = useForm();
   const [
     createUserWithEmailAndPassword,
+    user,
     loading,
     error,
   ] = useCreateUserWithEmailAndPassword(auth);
 
   const [updateProfile, updating, updateError] = useUpdateProfile(auth);
 
+  const [token] = useToken(user || gUser);
 
   const navigate = useNavigate();
 
@@ -23,14 +26,15 @@ const SignUp = () => {
   if (loading || gLoading || updating) {
     return <Loading></Loading>
   }
+  if(token){
+    console.log('token', token)
+    navigate('/purchase')
+  }
 
   let LogInError;
   if (error || gError || updateError) {
     LogInError = <p className='text-red-500'><small>{error?.message || gError?.message || updateError?.message}</small></p>
   }
-
-    navigate('/purchase');
-  
 
   const onSubmit = async data => {
     await createUserWithEmailAndPassword(data.email, data.password);

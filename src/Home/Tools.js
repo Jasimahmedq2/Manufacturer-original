@@ -1,14 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import useServices from '../Hooks/useServices';
 import Tool from './Tool';
 
 const Tools = () => {
-  const [services, setServices] = useState([]);
-
-  useEffect(() => {
-    fetch('http://localhost:5000/service')
-    .then(res => res.json())
-    .then(data => setServices(data))
-  } , [])
+const [services, setServices] = useServices()
   return (
     <div className='my-10'>
       <h2 className='font-bold text-secondary text-xl'>all tools Number is {services.length}</h2>

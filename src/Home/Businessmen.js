@@ -22,12 +22,12 @@ const Businessmen = () => {
        <h4><span><AiOutlineFundProjectionScreen className='text-8xl'></AiOutlineFundProjectionScreen></span> <h2 className='font-bold text-secondary text-xl pt-2'>COMPLITE PROJECT</h2><p className='font-bold text-5xl text-accent'>560 <span className='font-bold text-secondary text-4xl'>+</span></p></h4>
       </div>
     </div>
-    <div class="card bg-base-200 shadow-xl my-10 flex p-5">
-  <div class="">
-    <h2 class="font-bold text-secondary text-4xl">Need help?</h2>
+    <div className="card bg-base-200 shadow-xl my-10 flex p-5">
+  <div className="">
+    <h2 className="font-bold text-secondary text-4xl">Need help?</h2>
     <p className='text-accent font-bold text-xl pt-2'>clear your Any  questions.....</p>
-    <div class="flex justify-end">
-    <button class="btn bg-gradient-to-r from-primary to-secondary bg-gradient-to-r hover:from-secondary hover:to-primary">contact us</button>
+    <div className="flex justify-end">
+    <button className="btn bg-gradient-to-r from-primary to-secondary bg-gradient-to-r hover:from-secondary hover:to-primary">contact us</button>
     </div>
   </div>
 </div>
