@@ -11,6 +11,9 @@ import MyOrder from './Home/MyOrder';
 import NotFound from './Page/Share/NotFound';
 import AddReview from './Page/Share/AddReview';
 import Dashboard from './Home/Dashboard';
+import Block from './Page/Share/Block';
+import AddProduct from './Home/AddProduct';
+import ManageProducts from './Home/ManageProducts';
 
 
 function App() {
@@ -35,11 +38,14 @@ function App() {
         }>
           <Route index element={<MyOrder></MyOrder>}></Route>
           <Route path='addreview' element={<AddReview></AddReview>}></Route>
+          <Route path='addproduct' element={<AddProduct></AddProduct>}></Route>
+          <Route path='manageproduct' element={<ManageProducts></ManageProducts>}></Route>
         </Route>
 
         <Route path='singup' element={
           <SignUp></SignUp>
         }></Route>
+        <Route path='block' element={<Block></Block>}></Route>
         <Route path='*' element={<NotFound></NotFound>}></Route>
       </Routes>
       <ToastContainer></ToastContainer>
