@@ -16,8 +16,8 @@ const Nav = () => {
   const navBar = <>
     <li><Link to="/">Item 1</Link></li>
     <li><Link to="/">Item 3</Link></li>
-    <li><Link to="/">Item 1</Link></li>
-    <li><Link to="/">Item 4</Link></li>
+    <li><Link to="/addreview">Add review</Link></li>
+    <li><Link to="/myorder">My orders</Link></li>
     <li>{user ? <button className='btn  btn-ghost' onClick={LongOut}>Sing Out</button> : <Link to='/login'>Log In</Link>}</li>
    
   </>

@@ -1,26 +1,49 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import auth from '../firebase.init';
 
 const Purchase = () => {
   const {id} = useParams()
   const [user] = useAuthState(auth)
   const [service, setService] = useState({})
-const [increament, setIncreament] = useState(service.menimum)
 
 
   useEffect(()=> {
-    fetch(`http://localhost:5000/service/${id}`)
+    fetch(`https://morning-dusk-58052.herokuapp.com/service/${id}`)
     .then(res => res.json())
     .then(data => setService(data))
   },[])
 
-const handleIncreament = () => {
-if(service.menimum < service.availabe || increament > service.menimum){
-  
-}
-}
+  const handlePurchase = (event) => {
+  event.preventDefault()
+
+  const purchase = {
+     name: user?.displayName,
+     email: user?.email,
+     productName: service.name,
+     minimumQuantity: service.menimum,
+     price: service.price,
+     phone: event.target.phone.value,
+  }
+
+  fetch('https://morning-dusk-58052.herokuapp.com/purchase', {
+    method: 'POST',
+    headers: {
+      'content-type' : 'application/json'
+    },
+    body: JSON.stringify(purchase)
+  })
+  .then(res => res.json())
+  .then(data => {
+    console.log(data)
+    toast('Your purchase added')
+  })
+  event.target.reset()
+
+  }
+
 
   return (
     <div className='text-center'>
@@ -31,10 +54,10 @@ if(service.menimum < service.availabe || increament > service.menimum){
 
         <button className='text-5xl font-bold'>-</button>
         <p className='text-xl text-secondary font-bold mt-4 '>{service.menimum}</p>
-        <button onClick={handleIncreament} className='text-5xl font-bold '>+</button>
+        <button  className='text-5xl font-bold '>+</button>
       </div>
 
-      <form className='mt-5'>
+      <form onSubmit={handlePurchase} className='mt-5'>
           <input type="text" name="quantity"  value={service.menimum} className="input input-bordered input-primary mt-3 w-full max-w-xs" />
           <br />
           <input className="input input-bordered input-primary  w-full max-w-xs mt-3" readOnly type="text" name="name" value={user.displayName} />

@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Review = ({ review }) => {
-  const { name, picture, description, email } = review;
+  const { name, image, description, email } = review;
   return (
     <div className="card lg:mag-w-lg bg-base-200 text-primary-content">
       <div>
@@ -9,7 +9,7 @@ const Review = ({ review }) => {
       </div>
       <div className="avatar my-5 justify-center items-center">
         <div className="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-          <img src={picture}  alt="images"/>
+          <img src={image}  alt="images"/>
         </div>
       </div>
       <div className="">

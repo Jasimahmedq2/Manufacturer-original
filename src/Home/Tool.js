@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, Navigate, useNavigate, useParams, } from 'react-router-dom';
+import { Link,  useNavigate, useParams, } from 'react-router-dom';
 import './Tool.css'
 const Tool = ({service}) => {
   const {id} = useParams()
