@@ -14,7 +14,7 @@ const Nav = () => {
   }
 
   const navBar = <>
-    <li><Link to="block">Block</Link></li>
+    <li><Link to="blog">Blog</Link></li>
     {
       user && <li><Link to='/dashboard'>dashboard</Link></li>
 

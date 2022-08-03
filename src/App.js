@@ -45,7 +45,7 @@ function App() {
         <Route path='singup' element={
           <SignUp></SignUp>
         }></Route>
-        <Route path='block' element={<Block></Block>}></Route>
+        <Route path='blog' element={<Block></Block>}></Route>
         <Route path='*' element={<NotFound></NotFound>}></Route>
       </Routes>
       <ToastContainer></ToastContainer>
