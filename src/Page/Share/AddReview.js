@@ -12,10 +12,10 @@ const AddReview = () => {
       name: user.displayName,
       email: user.email,
       description: event.target.description.value,
-      image: event.target.image.value
+      image: event.target.value
     }
 
-    fetch('http://localhost:5000/review', {
+    fetch('https://morning-dusk-58052.herokuapp.com/review', {
       method: 'POST',
       headers: {
         'content-type' : 'application/json'

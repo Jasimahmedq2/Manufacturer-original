@@ -32,7 +32,7 @@ const MyOrders = ({ order, index, handleDelete }) => {
 
                 <label for="delete-order" class="btn btn-ghost"
 
-                >Delete</label>f
+                >Delete</label>
               </div>
 
             </td>
