@@ -15,7 +15,7 @@ const AddProduct = () => {
     image: event.target.image.value
     }
 
-    fetch('https://morning-dusk-58052.herokuapp.com/service', {
+    fetch('http://localhost:5000/service', {
       method: 'POST',
       headers: {
         'content-type' : 'application/json'
@@ -32,16 +32,16 @@ const AddProduct = () => {
 
   return (
     <div>
-      <h2 className='text-xl font-bold text-secondary text-center'>{user?.displayName}  add new product </h2>
+      <h2 className='text-xl font-bold text-secondary text-center'>{user?.displayName}  add a new product </h2>
       <form onSubmit={handleReview}  className='mt-5'>
        
           <input className="input input-bordered input-accent  w-full max-w-xs mt-3"  type="text"  name="name" placeholder='product name'/>
           <br />
-          <input className="input input-bordered input-accent  w-full max-w-xs mt-3"  type="text"  name="menimum" placeholder='minimum quantity' />
+          <input className="input input-bordered input-accent  w-full max-w-xs mt-3"  type="number"  name="menimum" placeholder='minimum quantity' />
           <br />
-          <input type="text" name="available"  className="input input-bordered input-accent mt-3 w-full max-w-xs" placeholder='available quantity' />
+          <input type="number" name="available"  className="input input-bordered input-accent mt-3 w-full max-w-xs" placeholder='available quantity' />
           <br />
-          <input type="text" name="price"  className="input input-bordered input-accent mt-3 w-full max-w-xs" placeholder='each product price' />
+          <input type="number" name="price"  className="input input-bordered input-accent mt-3 w-full max-w-xs" placeholder='each product price' />
           <br />
          
           <input className='input input-bordered input-accent  w-full max-w-xs mt-3' type="text"  name='image' alt="" placeholder='image url'/>

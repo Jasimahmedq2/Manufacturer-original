@@ -21,10 +21,11 @@ const Login = () => {
     loading,
     error,
   ] = useSignInWithEmailAndPassword(auth);
+ 
 
   const navigate = useNavigate();
   const location = useLocation();
-const [token] = useToken(user || gUser)
+  const [token] = useToken(user || gUser)
 
   let from = location.state?.from?.pathname || "/";
 

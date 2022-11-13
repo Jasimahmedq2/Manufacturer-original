@@ -6,7 +6,7 @@ const ManageProducts = () => {
   const handleDelete = (id) => {
     const proceed = window.confirm('you are sure delete this?')
     if (proceed) {
-      fetch(`https://morning-dusk-58052.herokuapp.com/service/${id}`, {
+      fetch(`http://localhost:5000/service/${id}`, {
         method: 'DELETE'
       })
         .then(res => res.json())
@@ -18,34 +18,38 @@ const ManageProducts = () => {
   }
   return (
     <div>
+      <table class="table w-full">
+      <thead>
+        <tr>
+          <th></th>
+          <th>number</th>
+          <th>Name</th>
+          <th>price</th>
+          <th>available</th>
+          <th>delete</th>
+        </tr>
+      </thead>
 
+      <tbody>
 
-      {
-        services.map((service, index) => <div class="overflow-x-auto">
-          <table class="table w-full">
-            <thead>
+        {
+          services.map((service, index) => {
+            return(
               <tr>
-                <th></th>
-                <th>Name</th>
-                <th>price</th>
-                <th>available</th>
-                <th>delete</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th>{index + 1}</th>
-                <td>product: {service.name}</td>
-                <td>price {service.price}</td>
-                <td>available: {service.available}</td>
-                <td><button onClick={() => handleDelete(service._id)} className='btn btn-ghost'>delete</button></td>
-              </tr>
-
-            </tbody>
-          </table>
-        </div>)
-      }
-    </div>
+              <th></th>
+              <td>{index + 1}</td>
+              <td>product: {service.name}</td>
+              <td>price {service.price}</td>
+              <td>available: {service.available}</td>
+              <td><button onClick={() => handleDelete(service._id)} className='btn btn-ghost'>delete</button></td>
+            </tr>
+            )
+          }
+          )
+        }
+      </tbody>
+    </table>
+    </div >
   );
 };
 

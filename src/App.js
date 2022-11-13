@@ -7,6 +7,7 @@ import RequierAuth from './Page/Authentication/RequierAuth';
 import SignUp from './Page/Authentication/SingUp';
 import Nav from './Page/Share/Nav';
 import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import MyOrder from './Home/MyOrder';
 import NotFound from './Page/Share/NotFound';
 import AddReview from './Page/Share/AddReview';
@@ -14,6 +15,8 @@ import Dashboard from './Home/Dashboard';
 import Block from './Page/Share/Block';
 import AddProduct from './Home/AddProduct';
 import ManageProducts from './Home/ManageProducts';
+import MakeAdmin from './Page/DashBoard/admin/MakeAdmin';
+import RequireAdmin from './Page/Authentication/RequireAdmin';
 
 
 function App() {
@@ -39,7 +42,18 @@ function App() {
           <Route index element={<MyOrder></MyOrder>}></Route>
           <Route path='addreview' element={<AddReview></AddReview>}></Route>
           <Route path='addproduct' element={<AddProduct></AddProduct>}></Route>
-          <Route path='manageproduct' element={<ManageProducts></ManageProducts>}></Route>
+          
+          <Route path='makeadmin' element={
+            <RequireAdmin>
+              <MakeAdmin />
+            </RequireAdmin>
+          }/>
+
+          <Route path='manageproduct' element={
+            <RequireAdmin>
+              <ManageProducts />
+            </RequireAdmin>
+          }/>
         </Route>
 
         <Route path='singup' element={

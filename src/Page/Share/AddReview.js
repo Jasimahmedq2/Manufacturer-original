@@ -15,7 +15,7 @@ const AddReview = () => {
       image: event.target.value
     }
 
-    fetch('https://morning-dusk-58052.herokuapp.com/review', {
+    fetch('http://localhost:5000/review', {
       method: 'POST',
       headers: {
         'content-type' : 'application/json'
