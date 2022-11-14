@@ -1,75 +1,81 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { useQuery } from 'react-query';
+import { Link } from 'react-router-dom';
 import auth from '../firebase.init';
+import Loading from '../Page/Share/Loading';
+import MyOrderModal from '../Page/Share/MyOrderModal';
 
 const MyOrder = () => {
   const [user] = useAuthState(auth)
-  const [orders, setOrders] = useState([])
-  useEffect(() => {
-    const LoadData = async () => {
+  const [orderModal, setOrderModal] = useState(null)
+
       const email = user.email;
       const url = `http://localhost:5000/purchase?email=${email}`
-      const { data } = await axios.get(url)
-      setOrders(data)
+      const {data, isLoading, refetch} = useQuery('deleteorder', () => fetch(url).then(res => res.json()))
 
-    }
-    LoadData()
-  }, [user])
-
+if(isLoading){
+  return <Loading></Loading>
+}
 
 
   return (
     <div>
-      <h2 className='text-2xl font-bold'>total orders: {orders.length}</h2>
       <div>
 
 
-      <div class="overflow-x-auto">
-      <table class="table w-full">
+        <div class="overflow-x-auto">
+          <table class="table table-zebra w-full">
 
 
-        <thead>
-          <tr>
-            <th></th>
-            <th>Name</th>
-            <th>email</th>
-            <th>product</th>
-            <th>DELETE</th>
+            <thead>
+              <tr>
+                <th></th>
+                <th>email</th>
+                <th>Total price</th>
+                <th>payment</th>
+                <th>DELETE</th>
 
 
 
-          </tr>
-        </thead>
-        <tbody>
+              </tr>
+            </thead>
+            <tbody>
 
-{
-  orders.map((order, index) => {
-    return(   
-      <tr>
-      <th>{index + 1}</th>
-      <td>{order?.name}</td>
-      <td>{order?.productName}</td>
-      <td>{order?.email}</td>
-      <td>
-        <div class="modal-action">
-          <label for="delete-order" class="btn btn-ghost"
-          >Delete</label>
+              {
+                data.map((order, index) => {
+                  return (
+                    <tr>
+                      <td>{index + 1}</td>
+                      <td>{order?.email}</td>
+                      <td>{parseInt(order.price * order.quantity)}</td>
+                      <td><Link to={`/dashboard/payment/${order._id}`}><button className='btn btn-sm btn-primary'>pay now</button></Link></td>
+                      <td>                   
+                          <label onClick={() => setOrderModal(order)} for="order-modal" class="btn btn-sm"
+                          >Delete</label>
+                      </td>
+                    </tr>
+                  )
+                })
+              }
+
+            </tbody>
+          </table>
+
         </div>
-
-      </td>
-    </tr>
-    )
-  })
-}
-
-        </tbody>
-      </table>
-      
-    </div>
       </div>
+      {
+        orderModal && <MyOrderModal
+        orderModal={orderModal}
+        setOrderModal={setOrderModal}
+        refetch={refetch}
+        ></MyOrderModal>
+
+        
+      }
     </div>
-  )   
+  )
 };
 
 export default MyOrder;

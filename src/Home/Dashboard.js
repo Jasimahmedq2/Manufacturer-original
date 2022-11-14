@@ -20,6 +20,7 @@ const Dashboard = () => {
         <ul class="menu p-4 overflow-y-auto w-38 bg-base-100 text-base-content">
           {
             !admin && <>
+            <li><Link to='/dashboard/myorder'>My order</Link></li>
               <li><Link to='/dashboard/addreview'>My review</Link></li>
               <li><Link to='/dashboard/addproduct'>Add product</Link></li>
             </>
