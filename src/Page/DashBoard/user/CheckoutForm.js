@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 
-const CheckoutForm = ({ serviceInfo }) => {
+const CheckoutForm = ({ serviceInfo, refetch }) => {
   const [cardError, setCardError] = useState('')
   const [successMessage, setSuccessMessage] = useState('')
   const [clientSecret, setClientSecret] = useState('')
@@ -96,9 +96,10 @@ const CheckoutForm = ({ serviceInfo }) => {
       console.log("paymentIntent", paymentIntent)
       setSuccessMessage('your payment successfully completed your transactionId')
     }
-    toast.success(`payment success your transactionId: ${transactionId}`)
+    toast.success('payment success')
     setPLoading(false)
     setSuccess(true)
+    refetch()
   }
 
 

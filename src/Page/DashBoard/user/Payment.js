@@ -13,7 +13,7 @@ const Payment = () => {
   const { id } = useParams()
   const url = `http://localhost:5000/payment/${id}`
 
-  const { data: serviceInfo, isLoading } = useQuery(['payment', id], () => fetch(url).then(res => res.json()))
+  const { data: serviceInfo, isLoading, refetch } = useQuery(['payment', id], () => fetch(url).then(res => res.json()))
 
 
   if (isLoading) {
@@ -31,7 +31,10 @@ const Payment = () => {
       <div className="card w-50 max-w-md bg-base-100 shadow-xl">
         <div className="card-body text-left">
           <Elements stripe={stripePromise}>
-            <CheckoutForm serviceInfo={serviceInfo}/>
+            <CheckoutForm 
+            serviceInfo={serviceInfo}
+            refetch={refetch}
+            />
           </Elements>
         </div>
       </div>

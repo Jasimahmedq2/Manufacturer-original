@@ -13,12 +13,8 @@ const Review = ({ review }) => {
         </div>
       </div>
       <div className="">
-
-
         <h2 className="font-bold text-2xl text-secondary">{name}</h2>
         <h2 className="text-xl font-bold text-accent">{email}</h2>
-
-
 
       </div>
     </div>

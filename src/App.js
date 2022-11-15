@@ -1,23 +1,25 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Home from './Home/Home';
-import Purchase from './Home/Purchase';
+import Purchase from './Page/DashBoard/user/Purchase';
 import Login from './Page/Authentication/Login';
 import RequierAuth from './Page/Authentication/RequierAuth';
 import SignUp from './Page/Authentication/SingUp';
 import Nav from './Page/Share/Nav';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import MyOrder from './Home/MyOrder';
+import MyOrder from './Page/DashBoard/user/MyOrder';
 import NotFound from './Page/Share/NotFound';
 import AddReview from './Page/Share/AddReview';
-import Dashboard from './Home/Dashboard';
+import Dashboard from './Page/DashBoard/Dashboard';
 import Block from './Page/Share/Block';
-import AddProduct from './Home/AddProduct';
-import ManageProducts from './Home/ManageProducts';
+import AddProduct from './Page/DashBoard/admin/AddProduct';
+import ManageProducts from './Page/DashBoard/admin/ManageProducts';
 import MakeAdmin from './Page/DashBoard/admin/MakeAdmin';
 import RequireAdmin from './Page/Authentication/RequireAdmin';
 import Payment from './Page/DashBoard/user/Payment';
+import MyProfile from './Page/DashBoard/MyProfile';
+import ManageAllOrders from './Page/DashBoard/admin/ManageAllOrders';
 
 
 function App() {
@@ -45,10 +47,16 @@ function App() {
           <Route path='addproduct' element={<AddProduct></AddProduct>}></Route>
 
           <Route path='payment/:id' element={<Payment />}/>
+          <Route path='myprofile' element={<MyProfile />}/>
           
           <Route path='makeadmin' element={
             <RequireAdmin>
               <MakeAdmin />
+            </RequireAdmin>
+          }/>
+          <Route path='manageorders' element={
+            <RequireAdmin>
+              <ManageAllOrders />
             </RequireAdmin>
           }/>
 

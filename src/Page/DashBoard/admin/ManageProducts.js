@@ -1,5 +1,5 @@
 import React from 'react';
-import useServices from '../Hooks/useServices';
+import useServices from '../../../Hooks/useServices';
 
 const ManageProducts = () => {
   const [services, setServices] = useServices()

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useForm } from "react-hook-form";
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useParams } from 'react-router-dom';
-import auth from '../firebase.init';
+import auth from '../../../firebase.init';
 import { toast } from 'react-toastify';
 
 
