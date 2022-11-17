@@ -20,6 +20,7 @@ import RequireAdmin from './Page/Authentication/RequireAdmin';
 import Payment from './Page/DashBoard/user/Payment';
 import MyProfile from './Page/DashBoard/MyProfile';
 import ManageAllOrders from './Page/DashBoard/admin/ManageAllOrders';
+import Emailjs from './Page/Share/emilJs';
 
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
             <Purchase></Purchase>
           </RequierAuth>
         }></Route>
+        <Route path='emailjs' element={<Emailjs />}/>
 
         <Route path='dashboard' element={
           <RequierAuth>

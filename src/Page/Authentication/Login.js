@@ -45,6 +45,9 @@ const Login = () => {
     LogInError = <p className='text-red-500'><small>{error?.message || gError?.message}</small></p>
   }
 
+  const email = 'admin@gmail.com'
+  const password = 'adminpassword'
+
   return (
     <div className='flex h-screen justify-center items-center'>
       <div className="card w-96 bg-base-100 shadow-xl">
@@ -58,6 +61,7 @@ const Login = () => {
               </label>
               <input
                 type="email"
+                value={email}
                 placeholder="Your Email"
                 className="input input-bordered w-full max-w-xs"
                 {...register("email", {
@@ -82,6 +86,7 @@ const Login = () => {
               </label>
               <input
                 type="password"
+                value={password}
                 placeholder="Password"
                 className="input input-bordered w-full max-w-xs"
                 {...register("password", {

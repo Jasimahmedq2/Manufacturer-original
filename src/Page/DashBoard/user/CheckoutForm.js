@@ -18,7 +18,7 @@ const CheckoutForm = ({ serviceInfo, refetch }) => {
   const { _id, price, quantity, name, email, transactionId } = serviceInfo
 
   useEffect(() => {
-    fetch('http://localhost:5000/create-payment-intent', {
+    fetch('https://manufacturer-myself.up.railway.app/create-payment-intent', {
       method: 'POST',
       headers: {
         "content-type": "application/json"
@@ -82,7 +82,7 @@ const CheckoutForm = ({ serviceInfo, refetch }) => {
       }
 
 
-      fetch(`http://localhost:5000/payment/${_id}`, {
+      fetch(`https://manufacturer-myself.up.railway.app/payment/${_id}`, {
         method: 'PATCH',
         headers: {
           "content-type": "application/json"

@@ -4,13 +4,13 @@ import { useQuery } from 'react-query';
 import Loading from '../../Share/Loading';
 
 const ManageAllOrders = () => {
-  const { data: manageOrders, isLoading, refetch } = useQuery('manageorders', () => fetch('http://localhost:5000/manageorder').then(res => res.json()))
+  const { data: manageOrders, isLoading, refetch } = useQuery('manageorders', () => fetch('https://manufacturer-myself.up.railway.app/manageorder').then(res => res.json()))
   if (isLoading) {
     return <Loading />
   }
 
   const handleShipped = (id) => {
-    fetch(`http://localhost:5000/shipped/${id}`, {
+    fetch(`https://manufacturer-myself.up.railway.app/shipped/${id}`, {
       method: 'PATCH',
       headers: {
         "content-type": "application/json"

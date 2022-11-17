@@ -5,7 +5,7 @@ const MyOrderModal = ({ orderModal, setOrderModal, refetch }) => {
 
   const handleDeleteOrder = (id) => {
     console.log("ordermodal", orderModal)
-    fetch(`http://localhost:5000/purchase/${id}`, {
+    fetch(`https://manufacturer-myself.up.railway.app/purchase/${id}`, {
       method: 'DELETE',
     })
       .then(res => res.json())

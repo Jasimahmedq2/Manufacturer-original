@@ -25,7 +25,7 @@ const Tool = ({service}) => {
         <div>
         <button
         onClick={() => handlePurchase(_id)}
-        className="btn bg-gradient-to-r from-primary to-secondary bg-gradient-to-r hover:from-secondary hover:to-primary absolute bottom-0 ">purchase</button>
+        className="btn bg-gradient-to-r from-primary to-secondary bg-gradient-to-r hover:from-secondary hover:to-primary absolute bottom-0 right-0">purchase</button>
         </div>
   
   </div>

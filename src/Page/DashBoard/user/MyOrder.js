@@ -12,7 +12,7 @@ const MyOrder = () => {
   const [orderModal, setOrderModal] = useState(null)
 
   const email = user.email;
-  const url = `http://localhost:5000/purchase?email=${email}`
+  const url = `https://manufacturer-myself.up.railway.app/purchase?email=${email}`
   const { data, isLoading, refetch } = useQuery('deleteorder', () => fetch(url).then(res => res.json()))
 
   if (isLoading) {

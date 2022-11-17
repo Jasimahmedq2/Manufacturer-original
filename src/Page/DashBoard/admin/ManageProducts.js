@@ -6,7 +6,7 @@ const ManageProducts = () => {
   const handleDelete = (id) => {
     const proceed = window.confirm('you are sure delete this?')
     if (proceed) {
-      fetch(`http://localhost:5000/service/${id}`, {
+      fetch(`https://manufacturer-myself.up.railway.app/service/${id}`, {
         method: 'DELETE'
       })
         .then(res => res.json())

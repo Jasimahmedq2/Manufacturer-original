@@ -2,7 +2,7 @@ import React from 'react';
 import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Loading from '../Share/Loading';
 import useToken from '../../Hooks/useToken';
 
@@ -15,6 +15,7 @@ const SignUp = () => {
     loading,
     error,
   ] = useCreateUserWithEmailAndPassword(auth);
+  const location = useLocation()
 
   const [updateProfile, updating, updateError] = useUpdateProfile(auth);
 
@@ -26,9 +27,12 @@ const SignUp = () => {
   if (loading || gLoading || updating) {
     return <Loading></Loading>
   }
+
+  let from = location.state?.from?.pathname || "/";
+
   if(token){
     console.log('token', token)
-    navigate('/purchase')
+    navigate(from, {replace: true})
   }
 
   let LogInError;

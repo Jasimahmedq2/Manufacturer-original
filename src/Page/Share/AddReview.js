@@ -23,7 +23,7 @@ const AddReview = () => {
 
     }
 
-    fetch('http://localhost:5000/review', {
+    fetch('https://manufacturer-myself.up.railway.app/review', {
       method: 'POST',
       headers: {
         'content-type': 'application/json'
@@ -42,9 +42,9 @@ const AddReview = () => {
   }
 
 
-
   return (
     <div>
+      <h2 className='text-xl font-bold text-success my-2'>Review us</h2>
       <Container>
         {[...Array(5)].map((item, index) => {
           const givenRating = index + 1;
@@ -84,7 +84,7 @@ const AddReview = () => {
         {errors.description?.type === 'required' && <p
           className='text-sm text-red-400 font-sans'
           role="alert">descrition is required</p>}
-        <input className="btn btn-outline w-ful max-w-xs" type="submit" value="Add Review" />
+        <input className="btn btn-outline w-1/2" type="submit" value="Send" />
 
       </form>
 

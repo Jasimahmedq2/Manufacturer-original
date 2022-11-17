@@ -1,6 +1,7 @@
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 import auth from '../../../firebase.init';
 
 const AddProduct = () => {
@@ -32,7 +33,7 @@ const [user] = useAuthState(auth)
         email: data.email
       }
   
-      fetch('http://localhost:5000/service', {
+      fetch('https://manufacturer-myself.up.railway.app/service', {
         method: 'POST',
         headers: {
           'content-type': 'application/json'
@@ -42,9 +43,12 @@ const [user] = useAuthState(auth)
         .then(res => res.json())
         .then(inserted => {
           console.log(inserted)
+          if(inserted.insertedId){
+            toast.success('successfully added new product')
+          }
         })
     })
-
+reset()
     console.log(data)
   }
 
@@ -59,7 +63,7 @@ const [user] = useAuthState(auth)
     <div>
       <h2 className='text-xl font-bold text-secondary text-center'>{user?.displayName}  add a new product </h2>
 
-      <form className='sm:w-1/2 w-11/12 mx-auto p-6' onSubmit={handleSubmit(onSubmit)}>
+      <form className='sm:w-1/2 w-11/12 mx-auto p-6 bg-base-100 shadow-xl rounded-lg py-12' onSubmit={handleSubmit(onSubmit)}>
         <div class="relative z-0 mb-6 w-full group">
           <input type="name"
             {...register("product", { required: true })}

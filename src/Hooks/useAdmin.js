@@ -10,7 +10,7 @@ const useAdmin = (user) => {
   
  useEffect(() => {
   const LoadData = async() => {
-    const {data} = await axios.get(`http://localhost:5000/admin/${email}`)
+    const {data} = await axios.get(`https://manufacturer-myself.up.railway.app/admin/${email}`)
     console.log("data here", data)
     setAdmin(data.admin)
     setAdminLoading(false)
