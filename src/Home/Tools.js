@@ -5,8 +5,7 @@ import Tool from './Tool';
 const Tools = () => {
 const [services, setServices] = useServices()
   return (
-    <div className='my-10 px-12'>
-      <h2 className='font-bold text-secondary text-xl'>all tools Number is {services.length}</h2>
+    <div className='my-10 px-12 py-10 shadow rounded' style={{background: '#f7f6fc'}}>
       <div className='grid grid:cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
         {
           services.slice(0, 6).map(service => <Tool

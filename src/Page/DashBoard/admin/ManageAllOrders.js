@@ -1,10 +1,31 @@
 import React from 'react';
+import { useEffect } from 'react';
 import { useState } from 'react';
 import { useQuery } from 'react-query';
 import Loading from '../../Share/Loading';
 
 const ManageAllOrders = () => {
-  const { data: manageOrders, isLoading, refetch } = useQuery('manageorders', () => fetch('https://manufacturer-myself.up.railway.app/manageorder').then(res => res.json()))
+  const [manageOrders, setManageOrder] = useState([]);
+  const [searchBar, setSearchBar] = useState("")  
+  const [shipped, setShipped] = useState(null)
+  const [pending, setPending] = useState(null)
+  const [unpaid, setUnPaid] = useState(null)
+
+  const { status, data, isLoading, refetch } = useQuery('manageorders', async () => {
+    const res = await fetch('https://manufacturer-myself.up.railway.app/manageorder')
+
+    return res.json()
+  })
+
+
+  useEffect(() => {
+    if (status === 'success') {
+      setManageOrder(data)
+    }
+  }, [status, data])
+
+
+
   if (isLoading) {
     return <Loading />
   }
@@ -17,82 +38,330 @@ const ManageAllOrders = () => {
       }
     }).then(res => res.json()).then(result => {
       refetch()
-      console.log(result)
     })
 
   }
 
-  return (
-    <div className="overflow-x-auto">
-      <table className="table w-full">
-        <thead>
-          <tr>
-            <th>name</th>
-            <th>email</th>
-            <th>status</th>
-            <th>manage order</th>
-          </tr>
-        </thead>
-        <tbody>
-          {
-            manageOrders.map(order => {
-              return (
-                <tr key={order._id}>
-                  <td>{order?.name}</td>
-                  <td>{order.email}</td>
-                  <td>
-                    {
-                      !order.paid && <div className='bg-red-300 text-center p-2 rounded shadow-lg'>
-                        <h2 className='text-white text-xl font-bold'>UnPaid</h2>
-                      </div>
 
-                    }
-                    {
-                      order.paid && !order.shipped && 
-                        <div className="dropdown dropdown-left">
-                          <label tabIndex={0} className="btn m-1 ">Pending</label>
-                          <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
-                            <li><button
-                              onClick={() => handleShipped(order._id)}
-                              className='btn btn-outline'>Shipped</button></li>
-                          </ul>
-                        </div>
-                      
-                    }
-
-                    {
-                      order.shipped && <div className='bg-success text-center p-2 rounded shadow-lg'>
-                        <h2 className='text-xl font-bold '>Shipped</h2>
-                      </div>
-                    }
-
-                  </td>
+  const loadShipped = () => {
+    const shippedData = data.filter(shippedD => shippedD.shipped)
+    setShipped(shippedData)
+    setUnPaid(null)
+    setPending(null)
+    setManageOrder(null)
 
 
+  }
 
 
-                  <td>
-                    {
-                      order.paid ? <div className='bg-primary text-center rounded-xl shadow-lg'>
-                        <h2 className='text-sm p-2 font-sans text-white'>Paid Success</h2>
-                      </div>
-                        :
-                        <button className='btn btn-outline btn-sm'>delete</button>
-                    }
-                  </td>
+  const loadPending = () => {
+    const pendingData = data.filter(pendingD => !pendingD.shipped && pendingD.paid)
+    setPending(pendingData)
+    setUnPaid(null)
+    setShipped(null)
+    setManageOrder(null)
+
+  }
+  
+
+  const loadUnPaid = () => {
+    const unpaidData = data.filter(unpaidD => !unpaidD.paid)
+    setUnPaid(unpaidData)
+    setPending(null)
+    setShipped(null)
+    setManageOrder(null)
+  }
+  const allDataLoad = () => {
+    setManageOrder(data)
+    setPending(null)
+    setShipped(null)
+    setUnPaid(null)
+  }
+
+  const handleSearchBar = (e) => {
+    e.preventDefault()
+    const lowerCase = e.target.value.toLowerCase()
+    setSearchBar(lowerCase)
+  }
 
 
-                </tr>
-              )
-            })
-          }
+ const orderSearchBar = data.filter((order) => {
+    return order.email.toLowerCase().includes(searchBar)
+   })
 
 
+return (
+  <div style={{ background: '#f7f6fc' }} className="px-6 py-12 ">
+    <div className='flex items-center justify-between'>
+      <div className='space-x-3'>
+        <button className='btn btn-outline'
+          onClick={allDataLoad}
+        >all</button>
+        <button
+          onClick={loadShipped}
+          className='btn btn-outline'>shipped </button>
 
-        </tbody>
-      </table>
+        <button
+          onClick={loadPending}
+          className='btn btn-outline'>Pending</button>
+
+        <button
+          onClick={loadUnPaid}
+          className='btn btn-outline'>unpaid</button>
+      </div>
+
+      <div className=''>
+        <input onChange={handleSearchBar} value={searchBar} type="text" placeholder="search by email address" className="input input-bordered input-lg w-full max-w-xs" />
+
+      </div>
     </div>
-  );
+
+    <div>
+
+
+
+      <div className='space-y-10 py-6'>
+
+        {
+          manageOrders && orderSearchBar.map(order => {
+            return (
+
+
+              <div style={{ background: "#201548" }} className='sm:flex justify-between items-center  
+                  space-y-4 sm:space-y-0 sm:space-x-4   text-white p-4 rounded' key={order._id}>
+                <div>{order?.name}</div>
+                <div>{order.email}</div>
+                <div>
+                  {
+                    !order.paid && <div className='bg-red-400 text-center p-2 rounded shadow-lg'>
+                      <h2 className='text-xl font-bold'>unPaid</h2>
+                    </div>
+
+                  }
+                  {
+                    order.paid && !order.shipped &&
+                    <div className="dropdown dropdown-left">
+                      <label tabIndex={0} className="btn m-1 ">Pending</label>
+                      <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+                        <li><button
+                          onClick={() => handleShipped(order._id)}
+                          className='btn btn-outline'>Shipped</button></li>
+                      </ul>
+                    </div>
+
+                  }
+
+                  {
+                    order.shipped && <div className='bg-success text-center p-2 rounded shadow-lg'>
+                      <h2 className='text-xl font-bold '>Shipped</h2>
+                    </div>
+                  }
+
+                </div>
+
+
+
+
+                <div>
+                  {
+                    order.paid ? <div className='bg-primary text-center rounded-xl shadow-lg'>
+                      <h2 className='text-sm p-2 font-sans text-white'>Paid Success</h2>
+                    </div>
+                      :
+                      <button className='btn btn-outline btn-sm text-white'>delete</button>
+                  }
+                </div>
+
+
+              </div>
+
+
+            )
+          })
+        }
+
+
+        {
+          shipped && shipped.map(order => {
+            return (
+
+
+              <div style={{ background: "#201548" }} className='sm:flex justify-between items-center  
+                  space-y-4 sm:space-y-0 sm:space-x-4   text-white p-4 rounded' key={order._id}>
+                <div>{order?.name}</div>
+                <div>{order.email}</div>
+                <div>
+                  {
+                    !order.paid && <div className='bg-red-400 text-center p-2 rounded shadow-lg'>
+                      <h2 className='text-xl font-bold'>unPaid</h2>
+                    </div>
+
+                  }
+                  {
+                    order.paid && !order.shipped &&
+                    <div className="dropdown dropdown-left">
+                      <label tabIndex={0} className="btn m-1 ">Pending</label>
+                      <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+                        <li><button
+                          onClick={() => handleShipped(order._id)}
+                          className='btn btn-outline'>Shipped</button></li>
+                      </ul>
+                    </div>
+
+                  }
+
+                  {
+                    order.shipped && <div className='bg-success text-center p-2 rounded shadow-lg'>
+                      <h2 className='text-xl font-bold '>Shipped</h2>
+                    </div>
+                  }
+
+                </div>
+
+
+
+
+                <div>
+                  {
+                    order.paid ? <div className='bg-primary text-center rounded-xl shadow-lg'>
+                      <h2 className='text-sm p-2 font-sans text-white'>Paid Success</h2>
+                    </div>
+                      :
+                      <button className='btn btn-outline btn-sm text-white'>delete</button>
+                  }
+                </div>
+
+
+              </div>
+
+
+            )
+          })
+        }
+
+
+        {
+          pending && pending.map(order => {
+            return (
+
+
+              <div style={{ background: "#201548" }} className='sm:flex justify-between items-center  
+                  space-y-4 sm:space-y-0 sm:space-x-4   text-white p-4 rounded' key={order._id}>
+                <div>{order?.name}</div>
+                <div>{order.email}</div>
+                <div>
+                  {
+                    !order.paid && <div className='bg-red-400 text-center p-2 rounded shadow-lg'>
+                      <h2 className='text-xl font-bold'>unPaid</h2>
+                    </div>
+
+                  }
+                  {
+                    order.paid && !order.shipped &&
+                    <div className="dropdown dropdown-left">
+                      <label tabIndex={0} className="btn m-1 ">Pending</label>
+                      <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+                        <li><button
+                          onClick={() => handleShipped(order._id)}
+                          className='btn btn-outline'>Shipped</button></li>
+                      </ul>
+                    </div>
+
+                  }
+
+                  {
+                    order.shipped && <div className='bg-success text-center p-2 rounded shadow-lg'>
+                      <h2 className='text-xl font-bold '>Shipped</h2>
+                    </div>
+                  }
+
+                </div>
+
+
+
+
+                <div>
+                  {
+                    order.paid ? <div className='bg-primary text-center rounded-xl shadow-lg'>
+                      <h2 className='text-sm p-2 font-sans text-white'>Paid Success</h2>
+                    </div>
+                      :
+                      <button className='btn btn-outline btn-sm text-white'>delete</button>
+                  }
+                </div>
+
+
+              </div>
+
+
+            )
+          })
+        }
+
+        {
+          unpaid && unpaid.map(order => {
+            return (
+
+
+              <div style={{ background: "#201548" }} className='sm:flex justify-between items-center  
+                  space-y-4 sm:space-y-0 sm:space-x-4   text-white p-4 rounded' key={order._id}>
+                <div>{order?.name}</div>
+                <div>{order.email}</div>
+                <div>
+                  {
+                    !order.paid && <div className='bg-red-400 text-center p-2 rounded shadow-lg'>
+                      <h2 className='text-xl font-bold'>unPaid</h2>
+                    </div>
+
+                  }
+                  {
+                    order.paid && !order.shipped &&
+                    <div className="dropdown dropdown-left">
+                      <label tabIndex={0} className="btn m-1 ">Pending</label>
+                      <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+                        <li><button
+                          onClick={() => handleShipped(order._id)}
+                          className='btn btn-outline'>Shipped</button></li>
+                      </ul>
+                    </div>
+
+                  }
+
+                  {
+                    order.shipped && <div className='bg-success text-center p-2 rounded shadow-lg'>
+                      <h2 className='text-xl font-bold '>Shipped</h2>
+                    </div>
+                  }
+
+                </div>
+
+
+
+
+                <div>
+                  {
+                    order.paid ? <div className='bg-primary text-center rounded-xl shadow-lg'>
+                      <h2 className='text-sm p-2 font-sans text-white'>Paid Success</h2>
+                    </div>
+                      :
+                      <button className='btn btn-outline btn-sm text-white'>delete</button>
+                  }
+                </div>
+
+
+              </div>
+
+
+            )
+          })
+        }
+
+
+
+      </div>
+    </div>
+  </div>
+);
 };
 
 export default ManageAllOrders;

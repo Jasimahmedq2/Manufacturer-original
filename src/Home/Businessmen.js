@@ -5,9 +5,12 @@ import {AiOutlineFundProjectionScreen} from 'react-icons/ai'
 import CountUp from "react-countup";
 import VisibilitySensor from "react-visibility-sensor";
 import { Link } from 'react-router-dom';
+import { motion } from "framer-motion"
 
 
 const Businessmen = () => {
+
+ 
 
   return (
  <div className=''>
@@ -56,15 +59,20 @@ const Businessmen = () => {
        <span className='font-bold text-secondary text-4xl'>+</span></p></h4>
       </div>
     </div>
-    <div className="card bg-base-200 shadow-xl my-10 flex p-5">
-  <div className="">
+    <motion.div
+      whileHover={{x: 0, y: 25}}
+
+     className="card bg-base-200 shadow-xl my-10 flex p-5">
+  <div 
+
+  className="">
     <h2 className="font-bold text-secondary text-4xl">Need help?</h2>
     <p className='text-accent font-bold text-xl pt-2'>clear your Any  questions.....</p>
     <div className="flex justify-end">
     <Link to="emailjs" className="btn bg-gradient-to-r from-primary to-secondary bg-gradient-to-r hover:from-secondary hover:to-primary">contact us</Link>
     </div>
   </div>
-</div>
+</motion.div>
  </div>
   );
 };

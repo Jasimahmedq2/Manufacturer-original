@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link,  useNavigate, useParams, } from 'react-router-dom';
 import './Tool.css'
+import {motion} from 'framer-motion'
 const Tool = ({service}) => {
   const {id} = useParams()
   const {_id, name, image, menimum, available, description, price} = service;
@@ -9,9 +10,14 @@ const Tool = ({service}) => {
     navigate(`/purchase/${id}`)
   }
   return (
-    <div className="card lg:max-w-lg bg-accent text-white shadow-xl relative">
-  <figure className="px-5 pt-5">
-    <img src={image} alt="Shoes" className="rounded-xl image-style" />
+    <motion.div
+    whileHover={{
+      y: -12,
+      transition: { duration: 0.5 },
+    }}
+    className="card hover-body lg:max-w-lg bg-accent text-white shadow-xl relative">
+  <figure className="px-5  relative overflow-hidden bg-no-repeat bg-cover max-w-xs">
+    <img src={image} alt="Shoes" className="rounded-xl image-style max-w-xs hover:scale-110 transition duration-300 ease-in-out" />
   </figure>
   <div className="card-body items-start mb-4">
     <h2>{_id}</h2>
@@ -29,7 +35,7 @@ const Tool = ({service}) => {
         </div>
   
   </div>
-</div>
+</motion.div>
   );
 };
 
