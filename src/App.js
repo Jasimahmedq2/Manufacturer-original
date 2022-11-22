@@ -21,6 +21,7 @@ import Payment from './Page/DashBoard/user/Payment';
 import MyProfile from './Page/DashBoard/MyProfile';
 import ManageAllOrders from './Page/DashBoard/admin/ManageAllOrders';
 import Emailjs from './Page/Share/emilJs';
+import RequireUser from './Page/Authentication/RequiereUser';
 
 
 function App() {
@@ -37,36 +38,56 @@ function App() {
             <Purchase></Purchase>
           </RequierAuth>
         }></Route>
-        <Route path='emailjs' element={<Emailjs />}/>
+        <Route path='emailjs' element={<Emailjs />} />
 
         <Route path='dashboard' element={
           <RequierAuth>
-          <Dashboard></Dashboard>
+            <Dashboard></Dashboard>
           </RequierAuth>
         }>
-          <Route path='myorder' element={<MyOrder></MyOrder>}></Route>
-          <Route path='addreview' element={<AddReview></AddReview>}></Route>
-          <Route path='addproduct' element={<AddProduct></AddProduct>}></Route>
+          <Route path='myorder' element={
+            <RequireUser>
+              <MyOrder />
+            </RequireUser>
+          }></Route>
+          <Route path='addreview' element={
 
-          <Route path='payment/:id' element={<Payment />}/>
-          <Route path='myprofile' element={<MyProfile />}/>
-          
+            <RequireUser>
+              <AddReview />
+            </RequireUser>
+          }></Route>
+
+          <Route path='addproduct' element={
+           <RequireAdmin>
+            <AddProduct/>
+           </RequireAdmin>
+           
+           } />
+
+          <Route path='payment/:id' element={
+            <RequireUser>
+              <Payment />
+            </RequireUser>
+          } />
+
+          <Route index element={<MyProfile />} />
+
           <Route path='makeadmin' element={
             <RequireAdmin>
               <MakeAdmin />
             </RequireAdmin>
-          }/>
+          } />
           <Route path='manageorders' element={
             <RequireAdmin>
               <ManageAllOrders />
             </RequireAdmin>
-          }/>
+          } />
 
           <Route path='manageproduct' element={
             <RequireAdmin>
               <ManageProducts />
             </RequireAdmin>
-          }/>
+          } />
         </Route>
 
         <Route path='singup' element={

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useForm } from "react-hook-form";
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import auth from '../../../firebase.init';
 import { toast } from 'react-toastify';
 
@@ -13,6 +13,7 @@ const Purchase = () => {
   console.log(service.minimum)
   const [updatedQuantity, setUpdatedQuantity] = useState(1)
   console.log("updateQuantity", updatedQuantity)
+  const navigate = useNavigate()
 
   const { register, formState: { errors }, handleSubmit, reset } = useForm();
   const onSubmit = (data) => {
@@ -40,6 +41,7 @@ const Purchase = () => {
       })
     console.log(data)
     reset()
+    navigate('/dashboard/myorder')
   };
 
 

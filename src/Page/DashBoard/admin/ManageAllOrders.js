@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { useQuery } from 'react-query';
 import Loading from '../../Share/Loading';
+import ManageOrderDelete from '../../Share/ManageOrderDelete';
 
 const ManageAllOrders = () => {
   const [manageOrders, setManageOrder] = useState([]);
@@ -10,6 +11,10 @@ const ManageAllOrders = () => {
   const [shipped, setShipped] = useState(null)
   const [pending, setPending] = useState(null)
   const [unpaid, setUnPaid] = useState(null)
+  console.log("unpaid", unpaid)
+
+  const [manageOrderDelete, setManageOrderDelete] = useState(null)
+  console.log("manageOrderDelete", manageOrderDelete)
 
   const { status, data, isLoading, refetch } = useQuery('manageorders', async () => {
     const res = await fetch('https://manufacturer-myself.up.railway.app/manageorder')
@@ -168,7 +173,8 @@ return (
                       <h2 className='text-sm p-2 font-sans text-white'>Paid Success</h2>
                     </div>
                       :
-                      <button className='btn btn-outline btn-sm text-white'>delete</button>
+                      <label onClick={() => setManageOrderDelete(order) } htmlFor="manage-order-delete" className="btn btn-sm btn-outline text-white">delete</label>
+                   
                   }
                 </div>
 
@@ -227,7 +233,7 @@ return (
                       <h2 className='text-sm p-2 font-sans text-white'>Paid Success</h2>
                     </div>
                       :
-                      <button className='btn btn-outline btn-sm text-white'>delete</button>
+                      <label onClick={() => setManageOrderDelete(order) } htmlFor="manage-order-delete" className="btn btn-sm btn-outline text-white">delete</label>
                   }
                 </div>
 
@@ -286,7 +292,9 @@ return (
                       <h2 className='text-sm p-2 font-sans text-white'>Paid Success</h2>
                     </div>
                       :
-                      <button className='btn btn-outline btn-sm text-white'>delete</button>
+                      <button
+                      onClick={() => setManageOrderDelete(order)}
+                      className='btn btn-outline btn-sm text-white'>delete</button>
                   }
                 </div>
 
@@ -344,7 +352,7 @@ return (
                       <h2 className='text-sm p-2 font-sans text-white'>Paid Success</h2>
                     </div>
                       :
-                      <button className='btn btn-outline btn-sm text-white'>delete</button>
+                      <label onClick={() => setManageOrderDelete(order) } htmlFor="manage-order-delete" className="btn btn-sm btn-outline text-white">delete</label>
                   }
                 </div>
 
@@ -360,6 +368,15 @@ return (
 
       </div>
     </div>
+    {
+      manageOrderDelete && <ManageOrderDelete
+      manageOrderDelete={manageOrderDelete}
+      setManageOrderDelete={setManageOrderDelete}
+      refetch={refetch}
+      ></ManageOrderDelete>
+      
+      
+    }
   </div>
 );
 };

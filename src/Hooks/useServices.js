@@ -3,7 +3,12 @@ import { useEffect, useState } from "react"
 const useServices = () => {
   const [services, setServices] = useState([])
   useEffect(() => {
-    fetch('https://manufacturer-myself.up.railway.app/service')
+    fetch('https://manufacturer-myself.up.railway.app/service', {
+      method: 'GET',
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('accessToken')}`
+      }
+    })
     .then(res => res.json())
     .then(data => setServices(data))
   },[])
