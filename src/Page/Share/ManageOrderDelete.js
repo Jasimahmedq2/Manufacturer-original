@@ -6,6 +6,9 @@ const ManageOrderDelete = ({ manageOrderDelete,  setManageOrderDelete, refetch }
   const handleDeleteUser = (id) => {
     fetch(`https://manufacturer-myself.up.railway.app/manageorderdelete/${id}`, {
       method: 'DELETE',
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('accessToken')}`
+      }
     })
       .then(res => res.json())
       .then(data => {

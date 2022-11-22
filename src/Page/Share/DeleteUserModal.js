@@ -6,6 +6,9 @@ const DeleteUserModal = ({ deleteUserModal,  setDeleteUserModal, refetch }) => {
   const handleDeleteUser = (email) => {
     fetch(`https://manufacturer-myself.up.railway.app/user/${email}`, {
       method: 'DELETE',
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('accessToken')}`
+      }
     })
       .then(res => res.json())
       .then(data => {

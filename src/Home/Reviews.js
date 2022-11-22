@@ -13,7 +13,12 @@ const Reviews = () => {
   const [reviews, setReviews] = useState([])
 
   useEffect(() => {
-    fetch('https://manufacturer-myself.up.railway.app/review')
+    fetch('https://manufacturer-myself.up.railway.app/review',{
+      method: 'GET',
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('accessToken')}`
+      }
+    })
       .then(res => res.json())
       .then(data => setReviews(data))
   }, [])

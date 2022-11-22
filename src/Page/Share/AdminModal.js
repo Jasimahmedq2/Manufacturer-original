@@ -7,6 +7,9 @@ const AdminModal = ({ adminModal, setAdminModal, refetch }) => {
     fetch(`https://manufacturer-myself.up.railway.app/user/admin/${email}`, {
       method: 'PUT',
       headers: {
+
+        authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+
         "content-type": "application/json"
       }
     })
@@ -15,8 +18,8 @@ const AdminModal = ({ adminModal, setAdminModal, refetch }) => {
         refetch()
         console.log(data)
       })
-      toast.success('successfully make admin')
-      setAdminModal(null)
+    toast.success('successfully make admin')
+    setAdminModal(null)
   }
 
   return (
@@ -27,9 +30,9 @@ const AdminModal = ({ adminModal, setAdminModal, refetch }) => {
       <div className="modal modal-bottom sm:modal-middle">
         <div className="modal-box">
           <h3 className="font-bold text-lg">you are sure given admin access {adminModal.email} ??</h3>
-      
+
           <div className="modal-action">
-            <button  onClick={() => MakeAdminRole(adminModal?.email)} className='btn btn-sm'>Yes</button>
+            <button onClick={() => MakeAdminRole(adminModal?.email)} className='btn btn-sm'>Yes</button>
             <label htmlFor="admin-modal" className="btn btn-sm">No</label>
           </div>
         </div>

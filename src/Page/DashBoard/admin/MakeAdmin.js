@@ -10,7 +10,12 @@ import Loading from '../../Share/Loading';
 const MakeAdmin = () => {
   const [adminModal, setAdminModal] = useState(null)
   const [deleteUserModal, setDeleteUserModal] = useState(null)
-  const { data, isLoading, refetch } = useQuery('userData', () => fetch('https://manufacturer-myself.up.railway.app/user').then(res => res.json()))
+  const { data, isLoading, refetch } = useQuery('userData', () => fetch('https://manufacturer-myself.up.railway.app/user', {
+    method: 'GET',
+    headers: {
+      authorization: `Bearer ${localStorage.getItem('accessToken')}`
+    }
+  }).then(res => res.json()))
 
   if (isLoading) {
     return <Loading />

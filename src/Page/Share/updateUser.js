@@ -7,6 +7,9 @@ const MyOrderModal = ({ updateUser, setUpdateUser, refetch }) => {
 
     fetch(`https://manufacturer-myself.up.railway.app/purchase/${id}`, {
       method: 'DELETE',
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('accessToken')}`
+      }
     })
       .then(res => res.json())
       .then(data => {

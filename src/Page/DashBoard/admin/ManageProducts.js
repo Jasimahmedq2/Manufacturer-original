@@ -7,7 +7,11 @@ const ManageProducts = () => {
     const proceed = window.confirm('you are sure delete this?')
     if (proceed) {
       fetch(`https://manufacturer-myself.up.railway.app/service/${id}`, {
-        method: 'DELETE'
+        method: 'DELETE',
+        
+        headers: {
+          authorization: `Bearer ${localStorage.getItem('accessToken')}`
+        }
       })
         .then(res => res.json())
         .then(data => {

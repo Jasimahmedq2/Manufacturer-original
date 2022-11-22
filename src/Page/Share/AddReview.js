@@ -26,13 +26,16 @@ const AddReview = () => {
     fetch('https://manufacturer-myself.up.railway.app/review', {
       method: 'POST',
       headers: {
+
+        authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+
         'content-type': 'application/json'
       },
       body: JSON.stringify(userReview)
     })
       .then(res => res.json())
       .then(result => {
-        if(result.insertedId){
+        if (result.insertedId) {
           toast.success('Thanks for your valueAble Review')
           setRate(0)
         }

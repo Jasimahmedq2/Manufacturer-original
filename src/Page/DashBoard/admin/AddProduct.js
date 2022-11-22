@@ -5,59 +5,62 @@ import { toast } from 'react-toastify';
 import auth from '../../../firebase.init';
 
 const AddProduct = () => {
-const [user] = useAuthState(auth)
+  const [user] = useAuthState(auth)
   const { register, formState: { errors }, handleSubmit, reset } = useForm();
   const onSubmit = (data) => {
 
-    
+
     const img = data?.image[0]
     const privateUrl = '44c26384eae4023f6064cf342eee9294'
     const formData = new FormData()
     formData.append('image', img)
-    
+
     fetch(`https://api.imgbb.com/1/upload?key=${privateUrl}`, {
       method: 'POST',
       body: formData
     })
-    .then(res => res.json())
-    .then(result => {
-      console.log("image url",result.data.url)
+      .then(res => res.json())
+      .then(result => {
+        console.log("image url", result.data.url)
 
-      const product = {
-        name: data.product,
-        minimum: data.minimum,
-        available: data.available,
-        price: data.price,
-        image: result.data.url,
-        title: data.title,
-        email: data.email
-      }
-  
-      fetch('https://manufacturer-myself.up.railway.app/service', {
-        method: 'POST',
-        headers: {
-          'content-type': 'application/json'
-        },
-        body: JSON.stringify(product)
-      })
-        .then(res => res.json())
-        .then(inserted => {
-          console.log(inserted)
-          if(inserted.insertedId){
-            toast.success('successfully added new product')
-          }
+        const product = {
+          name: data.product,
+          minimum: data.minimum,
+          available: data.available,
+          price: data.price,
+          image: result.data.url,
+          title: data.title,
+          email: data.email
+        }
+
+        fetch('https://manufacturer-myself.up.railway.app/service', {
+          method: 'POST',
+          headers: {
+
+            authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+
+            'content-type': 'application/json'
+          },
+          body: JSON.stringify(product)
         })
-    })
-reset()
+          .then(res => res.json())
+          .then(inserted => {
+            console.log(inserted)
+            if (inserted.insertedId) {
+              toast.success('successfully added new product')
+            }
+          })
+      })
+    reset()
     console.log(data)
   }
 
 
- 
 
- 
 
-  
+
+
+
 
   return (
     <div>
