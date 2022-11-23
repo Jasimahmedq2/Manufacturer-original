@@ -10,6 +10,7 @@ const Purchase = () => {
   const { id } = useParams()
   const [user] = useAuthState(auth)
   const [service, setService] = useState({})
+  console.log(service)
   console.log(service.minimum)
   const [updatedQuantity, setUpdatedQuantity] = useState(1)
   console.log("updateQuantity", updatedQuantity)
@@ -28,6 +29,7 @@ const Purchase = () => {
     fetch('https://manufacturer-myself.up.railway.app/purchase', {
       method: 'POST',
       headers: {
+        authorization: `Bearer ${localStorage.getItem('accessToken')}`,
         "content-type": "application/json"
       },
       body: JSON.stringify(purchase)
@@ -36,17 +38,23 @@ const Purchase = () => {
       .then(result => {
         if (result.insertedId) {
           toast.success('successfully place an order')
+          navigate('/dashboard/myorder')
         }
         console.log(result)
       })
     console.log(data)
     reset()
-    navigate('/dashboard/myorder')
+  
   };
 
 
   useEffect(() => {
-    fetch(`https://manufacturer-myself.up.railway.app/service/${id}`)
+    fetch(`https://manufacturer-myself.up.railway.app/service/${id}`,{
+      method: 'GET',
+     headers: {
+      authorization: `Bearer ${localStorage.getItem('accessToken')}`,     
+     }
+    })
       .then(res => res.json())
       .then(data => setService(data))
   }, [])

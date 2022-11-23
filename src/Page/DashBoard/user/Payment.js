@@ -13,7 +13,13 @@ const Payment = () => {
   const { id } = useParams()
   const url = `https://manufacturer-myself.up.railway.app/payment/${id}`
 
-  const { data: serviceInfo, isLoading, refetch } = useQuery(['payment', id], () => fetch(url).then(res => res.json()))
+  const { data: serviceInfo, isLoading, refetch } = useQuery(['payment', id], () => fetch(url, {
+    method: 'GET',
+    headers: {
+      authorization: `Bearer ${localStorage.getItem('accessToken')}`
+
+    }
+  }).then(res => res.json()))
 
 
   if (isLoading) {
@@ -31,9 +37,9 @@ const Payment = () => {
       <div className="card w-50 max-w-md bg-base-100 shadow-xl">
         <div className="card-body text-left">
           <Elements stripe={stripePromise}>
-            <CheckoutForm 
-            serviceInfo={serviceInfo}
-            refetch={refetch}
+            <CheckoutForm
+              serviceInfo={serviceInfo}
+              refetch={refetch}
             />
           </Elements>
         </div>

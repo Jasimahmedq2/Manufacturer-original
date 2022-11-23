@@ -21,6 +21,7 @@ const CheckoutForm = ({ serviceInfo, refetch }) => {
     fetch('https://manufacturer-myself.up.railway.app/create-payment-intent', {
       method: 'POST',
       headers: {
+        authorization: `Bearer ${localStorage.getItem('accessToken')}`, 
         "content-type": "application/json"
       },
       body: JSON.stringify({ price })
@@ -85,6 +86,7 @@ const CheckoutForm = ({ serviceInfo, refetch }) => {
       fetch(`https://manufacturer-myself.up.railway.app/payment/${_id}`, {
         method: 'PATCH',
         headers: {
+          authorization: `Bearer ${localStorage.getItem('accessToken')}`,
           "content-type": "application/json"
         },
         body: JSON.stringify(payment)

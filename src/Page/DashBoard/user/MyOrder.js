@@ -13,7 +13,14 @@ const MyOrder = () => {
 
   const email = user.email;
   const url = `https://manufacturer-myself.up.railway.app/purchase?email=${email}`
-  const { data, isLoading, refetch } = useQuery('deleteorder', () => fetch(url).then(res => res.json()))
+  const { data, isLoading, refetch } = useQuery('deleteorder', () => fetch(url, {
+    method: 'GET',
+    headers: {
+      authorization: `Bearer ${localStorage.getItem('accessToken')}`
+    }
+  }).then(res => res.json()))
+
+  console.log(data)
 
   if (isLoading) {
     return <Loading></Loading>
@@ -49,7 +56,7 @@ const MyOrder = () => {
                     <tr>
                       <td>{index + 1}</td>
                       <td>{order?.email}</td>
-                      <td>{parseInt(order.price * order.quantity)}</td>
+                      <td>{order.price}</td>
                       {
                         !order.paid && <td>
                           <Link to={`/dashboard/payment/${order._id}`}><button className='btn btn-sm btn-primary'>pay now</button></Link>

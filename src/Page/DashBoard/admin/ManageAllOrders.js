@@ -44,7 +44,7 @@ const ManageAllOrders = () => {
       method: 'PATCH',
       headers: {
 
-        authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+        // authorization: `Bearer ${localStorage.getItem('accessToken')}`,
 
         "content-type": "application/json"
       }
@@ -98,7 +98,9 @@ const ManageAllOrders = () => {
 
 
   const orderSearchBar = data.filter((order) => {
-    return order.email.toLowerCase().includes(searchBar)
+    console.log('order', order.email)
+
+    return order?.email?.toLowerCase().includes(searchBar)
   })
 
 
