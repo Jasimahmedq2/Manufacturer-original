@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react"
+import { useQuery } from "react-query"
 
 const useServices = () => {
   const [services, setServices] = useState([])
+
   useEffect(() => {
     fetch('https://manufacturer-myself.up.railway.app/service', {
       method: 'GET',

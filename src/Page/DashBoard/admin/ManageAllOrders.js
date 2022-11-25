@@ -106,7 +106,7 @@ const ManageAllOrders = () => {
 
   return (
     <div style={{ background: '#f7f6fc' }} className="px-6 py-12 ">
-      <div className='flex items-center justify-between'>
+      <div className='sm:flex items-center justify-between'>
         <div className='space-x-3'>
           <button className='btn btn-outline'
             onClick={allDataLoad}
@@ -124,7 +124,7 @@ const ManageAllOrders = () => {
             className='btn btn-outline'>unpaid</button>
         </div>
 
-        <div className=''>
+        <div className='p-4'>
           <input onChange={handleSearchBar} value={searchBar} type="text" placeholder="search by email address" className="input input-bordered input-lg w-full max-w-xs" />
 
         </div>

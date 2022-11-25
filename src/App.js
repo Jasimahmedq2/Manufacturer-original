@@ -34,9 +34,11 @@ function App() {
         }></Route>
         <Route path='login' element={<Login></Login>}></Route>
         <Route path='purchase/:id' element={
+          <RequireUser>
           <RequierAuth>
             <Purchase></Purchase>
           </RequierAuth>
+          </RequireUser>
         }></Route>
         <Route path='emailjs' element={<Emailjs />} />
 

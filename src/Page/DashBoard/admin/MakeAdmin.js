@@ -41,13 +41,15 @@ const MakeAdmin = () => {
               data.map(user =>  (
                 <tr>
                 <td>{user.email}</td>
+                <td>
                 {
                   !user.role ?
-                  <td><label onClick={() => setAdminModal(user)} htmlFor="admin-modal" className="btn btn-sm ">Make Admin</label></td>
+                  <label onClick={() => setAdminModal(user)} htmlFor="admin-modal" className="btn btn-sm ">Make Admin</label>
                   :
                   <h2 className='text-xl text-primary font-bold'>admin</h2>
                   
                 }
+                </td>
   
 
                 <td><label onClick={() => setDeleteUserModal(user)} htmlFor="Delete-User-Modal" className="btn btn-sm ">delete</label></td>

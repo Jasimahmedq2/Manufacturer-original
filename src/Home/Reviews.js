@@ -6,7 +6,7 @@ import 'swiper/css/autoplay';
 
 import "swiper/css";
 
-SwiperCore.use([Autoplay]);
+// SwiperCore.use([Autoplay]);
 
 
 const Reviews = () => {
@@ -33,9 +33,19 @@ const Reviews = () => {
           disableOnInteraction: false
         }}
         spaceBetween={50}
-        slidesPerView={3}
-        onSlideChange={() => console.log('slide change')}
+        breakpoints={{
+          340: {
+            slidesPerView: 1,
+          },
+          640: {
+            slidesPerView: 2,
+          },
+          768: {
+            slidesPerView: 3,
+          },
+        }}
         onSwiper={(swiper) => console.log(swiper)}
+
       >
 
 

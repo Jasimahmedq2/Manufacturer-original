@@ -1,7 +1,12 @@
 import React from 'react';
 import { toast } from 'react-toastify';
 
+import Loading from './Loading';
+import auth from '../../firebase.init';
+
+
 const DeleteUserModal = ({ deleteUserModal,  setDeleteUserModal, refetch }) => {
+
 
   const handleDeleteUser = (email) => {
     fetch(`https://manufacturer-myself.up.railway.app/user/${email}`, {
@@ -16,7 +21,6 @@ const DeleteUserModal = ({ deleteUserModal,  setDeleteUserModal, refetch }) => {
         refetch()
         console.log(data)
       })
-    
       setDeleteUserModal(null)
   }
 

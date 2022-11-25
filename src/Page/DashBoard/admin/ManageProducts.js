@@ -1,27 +1,17 @@
 import React from 'react';
+import { useState } from 'react';
+import ProductDeleteModal from '../../Share/PruductDelete';
+
 import useServices from '../../../Hooks/useServices';
 
 const ManageProducts = () => {
   const [services, setServices] = useServices()
-  const handleDelete = (id) => {
-    const proceed = window.confirm('you are sure delete this?')
-    if (proceed) {
-      fetch(`https://manufacturer-myself.up.railway.app/service/${id}`, {
-        method: 'DELETE',
-        
-        headers: {
-          authorization: `Bearer ${localStorage.getItem('accessToken')}`
-        }
-      })
-        .then(res => res.json())
-        .then(data => {
-          const newData = services.filter(service => service._id !== id)
-          setServices(newData)
-        })
-    }
-  }
+  const [productDelete, setProductDelete] = useState(null)
+
+ 
   return (
     <div>
+    <div className='overflow-x-auto'>
       <table className="table w-full">
       <thead>
         <tr>
@@ -42,10 +32,13 @@ const ManageProducts = () => {
               <tr>
               <th></th>
               <td>{index + 1}</td>
-              <td>product: {service.name}</td>
-              <td>price {service.price}</td>
-              <td>available: {service.available}</td>
-              <td><button onClick={() => handleDelete(service._id)} className='btn btn-ghost'>delete</button></td>
+              <td className='text-sm font-serif lg:text-xl'> {service.name}</td>
+              <td className='text-xl leading-tight'> {service.price}</td>
+              <td className='text-xl font-bold'> {service.available}</td>
+            <td>
+            <label onClick={() => setProductDelete(service)} htmlFor="product-delete-modal" className="btn">delete</label>
+            </td>
+        
             </tr>
             )
           }
@@ -53,6 +46,15 @@ const ManageProducts = () => {
         }
       </tbody>
     </table>
+    </div>
+  {
+    productDelete && <ProductDeleteModal
+    productDelete={productDelete}
+    setProductDelete={setProductDelete}
+    services={services}
+    setServices={setServices}
+    ></ProductDeleteModal>
+  }
     </div >
   );
 };
