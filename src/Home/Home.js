@@ -1,5 +1,6 @@
 import React from 'react';
 import Footer from '../Page/Share/Footer';
+import ScrollButton from '../Page/Share/ScrollButton';
 import Banner from './Banner';
 import Businessmen from './Businessmen';
 import Reviews from './Reviews';
@@ -13,6 +14,7 @@ const Home = () => {
       <Businessmen />
       <Reviews></Reviews>
       <Footer></Footer>
+      <ScrollButton />
     </div>
   );
 };

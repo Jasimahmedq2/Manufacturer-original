@@ -84,7 +84,7 @@ const AddProduct = () => {
         </div>
 
 
-        <form className='sm:w-1/2 w-full mx-auto p-6 bg-base-100 shadow-xl rounded-lg py-6' onSubmit={handleSubmit(onSubmit)}>
+        <form className='sm:w-1/2 w-full mx-auto p-6 bg-base-100 shadow-xl rounded-lg py-6 space-y-2' onSubmit={handleSubmit(onSubmit)}>
           <div className="relative z-0 my-6 w-full group ">
             <input type="name"
               {...register("product", { required: true })}
@@ -166,7 +166,7 @@ const AddProduct = () => {
           </div>
 
 
-          <input type="submit" value='submit' className="text-white  uppercase space-y-2
+          <input type="submit" value='submit' className="text-white  uppercase
         bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"/>
         </form>
       </div>

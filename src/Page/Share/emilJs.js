@@ -31,7 +31,7 @@ const Emailjs = () => {
         <input
           type="text"
           // name='name'
-          className='input input-primary p-4 shadow rounded w-1/2'
+          className='input input-primary p-4 shadow rounded w-11/12 lg:w-1/2'
           {...register("name", { required: true })} 
           placeholder='enter your name'
         />
@@ -42,7 +42,7 @@ const Emailjs = () => {
           // name='email'
           {...register("email", { required: true })} 
 
-          className='input input-primary p-4 shadow rounded w-1/2'
+          className='input input-primary p-4 shadow rounded w-11/12 lg:w-1/2'
           placeholder='enter your email' required
         />
         {errors.email?.type === 'required' && <p className='text-sm text-red-400 font-sans'> email is required</p>}
@@ -50,7 +50,7 @@ const Emailjs = () => {
         <textarea
           type="text"
           // name='description'
-          className='textarea resize-none input-primary p-4 shadow rounded w-1/2'
+          className='textarea resize-none input-primary p-4 shadow rounded w-11/12 lg:w-1/2'
           {...register("description", { required: true })} 
           placeholder='describe your problem here'
         />

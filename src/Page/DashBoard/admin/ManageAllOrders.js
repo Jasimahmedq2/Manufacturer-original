@@ -154,12 +154,12 @@ const ManageAllOrders = () => {
                     }
                     {
                       order.paid && !order.shipped &&
-                      <div className="dropdown dropdown-left">
+                      <div className="dropdown dropdown-bottom">
                         <label tabIndex={0} className="btn m-1 ">Pending</label>
-                        <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+                        <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-white rounded-box w-52">
                           <li><button
                             onClick={() => handleShipped(order._id)}
-                            className='btn btn-outline'>Shipped</button></li>
+                            className='btn btn-primary'>Shipped</button></li>
                         </ul>
                       </div>
 
@@ -214,12 +214,12 @@ const ManageAllOrders = () => {
                     }
                     {
                       order.paid && !order.shipped &&
-                      <div className="dropdown dropdown-left">
+                      <div className="dropdown dropdown-bottom">
                         <label tabIndex={0} className="btn m-1 ">Pending</label>
-                        <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+                        <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-white  rounded-box w-52">
                           <li><button
                             onClick={() => handleShipped(order._id)}
-                            className='btn btn-outline'>Shipped</button></li>
+                            className='btn btn-primary'>Shipped</button></li>
                         </ul>
                       </div>
 
@@ -273,12 +273,12 @@ const ManageAllOrders = () => {
                     }
                     {
                       order.paid && !order.shipped &&
-                      <div className="dropdown dropdown-left">
+                      <div className="dropdown dropdown-bottom">
                         <label tabIndex={0} className="btn m-1 ">Pending</label>
-                        <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+                        <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-white rounded-box w-52">
                           <li><button
                             onClick={() => handleShipped(order._id)}
-                            className='btn btn-outline'>Shipped</button></li>
+                            className='btn btn-primary'>Shipped</button></li>
                         </ul>
                       </div>
 
@@ -333,12 +333,12 @@ const ManageAllOrders = () => {
                     }
                     {
                       order.paid && !order.shipped &&
-                      <div className="dropdown dropdown-left">
+                      <div className="dropdown dropdown-bottom">
                         <label tabIndex={0} className="btn m-1 ">Pending</label>
-                        <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+                        <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-white rounded-box w-52">
                           <li><button
                             onClick={() => handleShipped(order._id)}
-                            className='btn btn-outline'>Shipped</button></li>
+                            className='btn btn-primary'>Shipped</button></li>
                         </ul>
                       </div>
 
