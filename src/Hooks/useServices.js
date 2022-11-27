@@ -5,12 +5,7 @@ const useServices = () => {
   const [services, setServices] = useState([])
 
   useEffect(() => {
-    fetch('https://manufacturer-myself.up.railway.app/service', {
-      method: 'GET',
-      headers: {
-        authorization: `Bearer ${localStorage.getItem('accessToken')}`
-      }
-    })
+    fetch('https://manufacturer-myself.up.railway.app/service')
     .then(res => res.json())
     .then(data => setServices(data))
   },[])

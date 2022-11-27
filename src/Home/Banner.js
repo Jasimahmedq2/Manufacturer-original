@@ -1,14 +1,9 @@
-import React from 'react';
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import pc from '../image/pc.jpg'
-import processor from '../image/processor.jpg'
-import ssd from '../image/ssd.jpg'
+import React, { useEffect } from 'react';
 
-import { Carousel } from 'react-responsive-carousel';
 import 'aos/dist/aos.css';
-import { useEffect } from 'react';
 import {motion} from 'framer-motion'
 import Aos from 'aos';
+import manufacturer from '../image/manufacturer.png'
 
 
 const Banner = () => {
@@ -17,61 +12,32 @@ const Banner = () => {
     Aos.init()
   }, [])
   return (
-    <Carousel
-      autoPlay={true}
-    >
-      <div className="hero
-  ">
-        <div className="hero-content sm:space-x-10 md:h-screen flex-col lg:flex-row-reverse  bg-gradient-to-r from-green-400 to-blue-500 ">
-          <div className="text-center lg:text-left sm:w-1/2">
-            <h1 className="text-5xl font-bold text-secondary">WELCOM TO  Bits Computer</h1>
-            <p className="py-6 text-white text-xl leading-loose">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
-          </div>
-          <div
-            data-aos="flip-left"
-            data-aos-easing="ease-out-cubic"
-            data-aos-duration="2000"
-            className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 sm:w-1/2">
-            <img src={pc} alt="" />
-          </div>
-        </div>
-      </div>
+    <div>
+   <div className="hero min-h-screen bg-base-200">
+  <div className="hero-content flex-col lg:flex-row space-x-6">
+    <div
+    data-aos="flip-down"
+    data-aos-delay="50"
+    data-aos-duration="2000"
 
-      <div className="hero  
-  ">
-        <div
-        className="hero-content md:h-screen flex-col lg:flex-row-reverse  bg-gradient-to-r from-green-400 to-blue-500 space-x-10">
-          <div className="text-center sm:w-1/2 lg:text-left">
-            <h1 className="text-5xl font-bold text-secondary">Best Budget M.2 Drive for PCI Express 4.0 Upgrades</h1>
-            <p className="py-6 text-white text-xl leading-loose">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
-          </div>
-          <div
-            data-aos="flip-left"
-            data-aos-easing="ease-out-cubic"
-            data-aos-duration="2000"
-
-            className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 sm:w-1/2 w-11/12">
-            <img src={ssd} alt="" />
-
-          </div>
-        </div>
-      </div>
-
-      <div className="hero  
-  ">
-        <div className="hero-content md:h-screen flex-col lg:flex-row-reverse  bg-gradient-to-r from-green-400 to-blue-500 space-x-10">
-          <div
-          className="text-center lg:text-left sm:w-1/2">
-            <h1 className="text-5xl font-bold text-secondary">AMD Ryzen 3 4100 Processor</h1>
-            <p className="py-6 text-white text-xl leading-loose">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
-          </div>
-          <div 
-          className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 sm:w-1/2 w-11/12">
-            <img src={processor} alt="" />
-          </div>
-        </div>
-      </div>
-    </Carousel >
+    className='lg:w-1/2'>
+    <img src={manufacturer} className=" rounded-lg shadow-2xl" />
+    </div>
+    <div
+        data-aos="zoom-in"
+        data-aos-offset="200"
+        data-aos-delay="500"
+        data-aos-duration="2000"
+        data-aos-easing="ease-in-out"
+        data-aos-mirror="true"
+    className='text-start lg:w-1/2'>
+      <h1 className="text-5xl font-bold">Bits Computer</h1>
+      <p className="py-6 text-2xl font-mono">here is an available lot of computer parts for you. its tools Manufacturers store where you can purchase PC parts. SSD, Ram, Processor, power supply, cooling fan, motherboard, and casing</p>
+  
+    </div>
+  </div>
+</div>
+    </div>
   );
 };
 
