@@ -22,7 +22,7 @@ const Purchase = () => {
       address: data.address,
       price: service?.price,
     }
-    fetch('https://manufacturer-myself.up.railway.app/purchase', {
+    fetch('https://tools-manufacturer.onrender.com/purchase', {
       method: 'POST',
       headers: {
         authorization: `Bearer ${localStorage.getItem('accessToken')}`,
@@ -45,7 +45,7 @@ const Purchase = () => {
 
 
   useEffect(() => {
-    fetch(`https://manufacturer-myself.up.railway.app/service/${id}`, {
+    fetch(`https://tools-manufacturer.onrender.com/service/${id}`, {
       method: 'GET',
       headers: {
         authorization: `Bearer ${localStorage.getItem('accessToken')}`,

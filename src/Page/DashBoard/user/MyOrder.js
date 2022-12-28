@@ -12,7 +12,7 @@ const MyOrder = () => {
   const [orderModal, setOrderModal] = useState(null)
 
   const email = user.email;
-  const url = `https://manufacturer-myself.up.railway.app/purchase?email=${email}`
+  const url = `https://tools-manufacturer.onrender.com/purchase?email=${email}`
   const { data, isLoading, refetch } = useQuery('deleteorder', () => fetch(url, {
     method: 'GET',
     headers: {

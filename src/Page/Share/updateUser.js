@@ -5,7 +5,8 @@ const MyOrderModal = ({ updateUser, setUpdateUser, refetch }) => {
 
   const handleUpdateUser = (id) => {
 
-    fetch(`https://manufacturer-myself.up.railway.app/purchase/${id}`, {
+    fetch(`https://tools-manufacturer.onrender.com
+/purchase/${id}`, {
       method: 'DELETE',
       headers: {
         authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -17,8 +18,8 @@ const MyOrderModal = ({ updateUser, setUpdateUser, refetch }) => {
         refetch()
         console.log(data)
       })
-    
-      setUpdateUser(null)
+
+    setUpdateUser(null)
   }
 
   return (
@@ -29,7 +30,7 @@ const MyOrderModal = ({ updateUser, setUpdateUser, refetch }) => {
       <div className="modal modal-bottom sm:modal-middle">
         <div className="modal-box">
           <h3 className="font-bold text-lg">you are sure delete your order ??</h3>
-      
+
           <div className="modal-action">
             <button onClick={() => handleUpdateUser(updateUser?._id)} className='btn btn-sm'>Yes</button>
             <label htmlFor="update-user" className="btn btn-sm">No</label>

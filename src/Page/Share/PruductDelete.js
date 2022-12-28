@@ -10,7 +10,7 @@ const ProductDeleteModal = ({ productDelete, setProductDelete,  services, setSer
     const presentData = services.filter(service => service._id !== productDelete._id)
     setServices(presentData)
 
-    fetch(`https://manufacturer-myself.up.railway.app/service/${id}`, {
+    fetch(`https://tools-manufacturer.onrender.com/service/${id}`, {
       method: 'DELETE',
 
       headers: {

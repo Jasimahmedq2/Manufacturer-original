@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 const AdminModal = ({ adminModal, setAdminModal, refetch }) => {
 
   const MakeAdminRole = (email) => {
-    fetch(`https://manufacturer-myself.up.railway.app/user/admin/${email}`, {
+    fetch(`https://tools-manufacturer.onrender.com/user/admin/${email}`, {
       method: 'PUT',
       headers: {
 

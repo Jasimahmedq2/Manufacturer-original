@@ -11,7 +11,7 @@ const stripePromise = loadStripe('pk_test_51M3eNZF0hTXeKSpwKWZGxTJ2gODmzoJbN6OC1
 
 const Payment = () => {
   const { id } = useParams()
-  const url = `https://manufacturer-myself.up.railway.app/payment/${id}`
+  const url = `https://tools-manufacturer.onrender.com/payment/${id}`
 
   const { data: serviceInfo, isLoading, refetch } = useQuery(['payment', id], () => fetch(url, {
     method: 'GET',

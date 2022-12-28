@@ -5,7 +5,7 @@ const useServices = () => {
   const [services, setServices] = useState([])
 
   useEffect(() => {
-    fetch('https://manufacturer-myself.up.railway.app/service')
+    fetch('https://tools-manufacturer.onrender.com/service')
     .then(res => res.json())
     .then(data => setServices(data))
   },[])

@@ -16,7 +16,7 @@ const ManageAllOrders = () => {
   const [manageOrderDelete, setManageOrderDelete] = useState(null)
 
   const { status, data, isLoading, refetch } = useQuery('manageorders', async () => {
-    const res = await fetch('https://manufacturer-myself.up.railway.app/manageorder', {
+    const res = await fetch('https://tools-manufacturer.onrender.com/manageorder', {
       method: 'GET',
       headers: {
         authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -40,7 +40,7 @@ const ManageAllOrders = () => {
   }
 
   const handleShipped = (id) => {
-    fetch(`https://manufacturer-myself.up.railway.app/shipped/${id}`, {
+    fetch(`https://tools-manufacturer.onrender.com/shipped/${id}`, {
       method: 'PATCH',
       headers: {
 

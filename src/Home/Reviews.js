@@ -13,7 +13,7 @@ const Reviews = () => {
   const [reviews, setReviews] = useState([])
 
   useEffect(() => {
-    fetch('https://manufacturer-myself.up.railway.app/review',{
+    fetch('https://tools-manufacturer.onrender.com/review',{
       method: 'GET',
       headers: {
         authorization: `Bearer ${localStorage.getItem('accessToken')}`

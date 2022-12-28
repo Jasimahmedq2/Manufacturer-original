@@ -10,7 +10,7 @@ import Loading from '../../Share/Loading';
 const MakeAdmin = () => {
   const [adminModal, setAdminModal] = useState(null)
   const [deleteUserModal, setDeleteUserModal] = useState(null)
-  const { data, isLoading, refetch } = useQuery('userData', () => fetch('https://manufacturer-myself.up.railway.app/user', {
+  const { data, isLoading, refetch } = useQuery('userData', () => fetch('https://tools-manufacturer.onrender.com/user', {
     method: 'GET',
     headers: {
       authorization: `Bearer ${localStorage.getItem('accessToken')}`

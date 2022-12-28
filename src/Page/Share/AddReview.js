@@ -23,7 +23,7 @@ const AddReview = () => {
 
     }
 
-    fetch('https://manufacturer-myself.up.railway.app/review', {
+    fetch('https://tools-manufacturer.onrender.com/review', {
       method: 'POST',
       headers: {
 

@@ -35,7 +35,7 @@ const AddProduct = () => {
           email: data.email
         }
 
-        fetch('https://manufacturer-myself.up.railway.app/service', {
+        fetch('https://tools-manufacturer.onrender.com/service', {
           method: 'POST',
           headers: {
 

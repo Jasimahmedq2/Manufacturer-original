@@ -18,7 +18,7 @@ const CheckoutForm = ({ serviceInfo, refetch }) => {
   const { _id, price, quantity, name, email, transactionId } = serviceInfo
 
   useEffect(() => {
-    fetch('https://manufacturer-myself.up.railway.app/create-payment-intent', {
+    fetch('https://tools-manufacturer.onrender.com/create-payment-intent', {
       method: 'POST',
       headers: {
         authorization: `Bearer ${localStorage.getItem('accessToken')}`, 
@@ -83,7 +83,7 @@ const CheckoutForm = ({ serviceInfo, refetch }) => {
       }
 
 
-      fetch(`https://manufacturer-myself.up.railway.app/payment/${_id}`, {
+      fetch(`https://tools-manufacturer.onrender.com/payment/${_id}`, {
         method: 'PATCH',
         headers: {
           authorization: `Bearer ${localStorage.getItem('accessToken')}`,

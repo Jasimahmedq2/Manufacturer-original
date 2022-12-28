@@ -10,7 +10,7 @@ const useAdmin = (user) => {
   
  useEffect(() => {
   const LoadData = async() => {
-    const {data} = await axios.get(`https://manufacturer-myself.up.railway.app/admin/${email}`, {
+    const {data} = await axios.get(`https://tools-manufacturer.onrender.com/admin/${email}`, {
       headers: {
         authorization: `Bearer ${localStorage.getItem('accessToken')}`
       }

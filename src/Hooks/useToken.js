@@ -6,7 +6,7 @@ const useToken = user => {
     const email = user?.user?.email;
     const currentEmail = {email: email}
     if(email){
-      fetch(`https://manufacturer-myself.up.railway.app/user/${email}`, {
+      fetch(`https://tools-manufacturer.onrender.com/user/${email}`, {
         method: 'PUT',
         headers:{
           'content-type' : 'application/json'

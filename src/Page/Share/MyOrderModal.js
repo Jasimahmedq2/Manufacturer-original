@@ -5,7 +5,7 @@ const MyOrderModal = ({ orderModal, setOrderModal, refetch }) => {
 
   const handleDeleteOrder = (id) => {
     console.log("ordermodal", orderModal)
-    fetch(`https://manufacturer-myself.up.railway.app/purchase/${id}`, {
+    fetch(`https://tools-manufacturer.onrender.com/purchase/${id}`, {
       method: 'DELETE',
       headers: {
         authorization: `Bearer ${localStorage.getItem('accessToken')}`
