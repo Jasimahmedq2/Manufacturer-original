@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useState } from 'react';
 import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -6,7 +7,14 @@ import auth from '../../firebase.init';
 import useToken from '../../Hooks/useToken';
 import Loading from '../Share/Loading';
 
+const userInfo = {
+  userEmail: 'admin@gmail.com',
+  userPassword: 'adminpassword'
+}
+
 const Login = () => {
+  const [userEmail, setUserEmail] = useState(userInfo.userEmail)
+  const [userPassword, setUserPassword] = useState(userInfo.userPassword)
   const { register, formState: { errors }, handleSubmit } = useForm();
 
   const onSubmit = data => {
@@ -45,9 +53,6 @@ const Login = () => {
     LogInError = <p className='text-red-500'><small>{error?.message || gError?.message}</small></p>
   }
 
-  const email = 'admin@gmail.com'
-  const password = 'adminpassword'
-
   return (
     <div className='flex h-screen justify-center items-center'>
       <div className="card w-96 bg-base-100 shadow-xl">
@@ -60,8 +65,7 @@ const Login = () => {
                 <span className="label-text">Email</span>
               </label>
               <input
-                type="email"
-                value={email}
+                type="email"    
                 placeholder="Your Email"
                 className="input input-bordered w-full max-w-xs"
                 {...register("email", {
@@ -74,6 +78,8 @@ const Login = () => {
                     message: 'Provide a valid Email'
                   }
                 })}
+                value={userEmail}
+                onChange={(e) => setUserEmail(e.target.value)}
               />
               <label className="label">
                 {errors.email?.type === 'required' && <span className="label-text-alt text-red-500">{errors.email.message}</span>}
@@ -86,7 +92,7 @@ const Login = () => {
               </label>
               <input
                 type="password"
-                value={password}
+             
                 placeholder="Password"
                 className="input input-bordered w-full max-w-xs"
                 {...register("password", {
@@ -99,6 +105,8 @@ const Login = () => {
                     message: 'Must be 6 characters or longer'
                   }
                 })}
+                value={userPassword}
+                onChange={(e) => setUserPassword(e.target.value)}
               />
               <label className="label">
                 {errors.password?.type === 'required' && <span className="label-text-alt text-red-500">{errors.password.message}</span>}
