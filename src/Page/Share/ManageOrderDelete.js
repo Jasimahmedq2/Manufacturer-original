@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 const ManageOrderDelete = ({ manageOrderDelete,  setManageOrderDelete, refetch }) => {
 
   const handleDeleteUser = (id) => {
-    fetch(`https://tools-manufacturer.onrender.com/manageorderdelete/${id}`, {
+    fetch(`https://dull-puce-basket-clam-sari.cyclic.app/purchase/manageorderdelete/${id}`, {
       method: 'DELETE',
       headers: {
         authorization: `Bearer ${localStorage.getItem('accessToken')}`

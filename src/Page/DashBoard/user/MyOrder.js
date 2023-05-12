@@ -1,5 +1,4 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
@@ -12,7 +11,7 @@ const MyOrder = () => {
   const [orderModal, setOrderModal] = useState(null)
 
   const email = user.email;
-  const url = `https://tools-manufacturer.onrender.com/purchase?email=${email}`
+  const url = `https://dull-puce-basket-clam-sari.cyclic.app/purchase/?email=${email}`
   const { data, isLoading, refetch } = useQuery('deleteorder', () => fetch(url, {
     method: 'GET',
     headers: {
@@ -20,7 +19,7 @@ const MyOrder = () => {
     }
   }).then(res => res.json()))
 
-  console.log(data)
+  console.log({data})
 
   if (isLoading) {
     return <Loading></Loading>

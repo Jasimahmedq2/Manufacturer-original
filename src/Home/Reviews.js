@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore, { Autoplay } from 'swiper';
-import { AiFillStar } from 'react-icons/ai'
+import { AiFillStar } from 'react-icons/ai';
+import { Autoplay } from 'swiper';
 import 'swiper/css/autoplay';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 import "swiper/css";
 
@@ -13,7 +13,7 @@ const Reviews = () => {
   const [reviews, setReviews] = useState([])
 
   useEffect(() => {
-    fetch('https://tools-manufacturer.onrender.com/review',{
+    fetch('https://dull-puce-basket-clam-sari.cyclic.app/review/',{
       method: 'GET',
       headers: {
         authorization: `Bearer ${localStorage.getItem('accessToken')}`

@@ -1,7 +1,4 @@
-import axios from 'axios';
-import React from 'react';
-import { useState } from 'react';
-import { useEffect } from 'react';
+import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import AdminModal from '../../Share/AdminModal';
 import DeleteUserModal from '../../Share/DeleteUserModal';
@@ -10,7 +7,7 @@ import Loading from '../../Share/Loading';
 const MakeAdmin = () => {
   const [adminModal, setAdminModal] = useState(null)
   const [deleteUserModal, setDeleteUserModal] = useState(null)
-  const { data, isLoading, refetch } = useQuery('userData', () => fetch('https://tools-manufacturer.onrender.com/user', {
+  const { data, isLoading, refetch } = useQuery('userData', () => fetch('https://dull-puce-basket-clam-sari.cyclic.app/user/', {
     method: 'GET',
     headers: {
       authorization: `Bearer ${localStorage.getItem('accessToken')}`

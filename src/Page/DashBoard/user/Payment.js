@@ -11,7 +11,7 @@ const stripePromise = loadStripe('pk_test_51M3eNZF0hTXeKSpwKWZGxTJ2gODmzoJbN6OC1
 
 const Payment = () => {
   const { id } = useParams()
-  const url = `https://tools-manufacturer.onrender.com/payment/${id}`
+  const url = `https://dull-puce-basket-clam-sari.cyclic.app/purchase/payment/${id}`
 
   const { data: serviceInfo, isLoading, refetch } = useQuery(['payment', id], () => fetch(url, {
     method: 'GET',
@@ -20,6 +20,8 @@ const Payment = () => {
 
     }
   }).then(res => res.json()))
+
+  console.log(serviceInfo)
 
 
   if (isLoading) {

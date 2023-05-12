@@ -1,14 +1,12 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
-import { current } from 'daisyui/src/colors';
-import React from 'react';
-import { useEffect } from 'react';
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 
 const CheckoutForm = ({ serviceInfo, refetch }) => {
   const [cardError, setCardError] = useState('')
   const [successMessage, setSuccessMessage] = useState('')
   const [clientSecret, setClientSecret] = useState('')
+  console.log("clientSecret", clientSecret)
   const [success, setSuccess] = useState(false)
   const [pLoading, setPLoading] = useState(false)
   const stripe = useStripe();
@@ -18,7 +16,7 @@ const CheckoutForm = ({ serviceInfo, refetch }) => {
   const { _id, price, quantity, name, email, transactionId } = serviceInfo
 
   useEffect(() => {
-    fetch('https://tools-manufacturer.onrender.com/create-payment-intent', {
+    fetch('https://dull-puce-basket-clam-sari.cyclic.app/payment/create-payment-intent', {
       method: 'POST',
       headers: {
         authorization: `Bearer ${localStorage.getItem('accessToken')}`, 
@@ -83,7 +81,7 @@ const CheckoutForm = ({ serviceInfo, refetch }) => {
       }
 
 
-      fetch(`https://tools-manufacturer.onrender.com/payment/${_id}`, {
+      fetch(`https://dull-puce-basket-clam-sari.cyclic.app/purchase/payment/${_id}`, {
         method: 'PATCH',
         headers: {
           authorization: `Bearer ${localStorage.getItem('accessToken')}`,
@@ -96,7 +94,7 @@ const CheckoutForm = ({ serviceInfo, refetch }) => {
       })
 
       console.log("paymentIntent", paymentIntent)
-      setSuccessMessage('your payment successfully completed your transactionId')
+      setSuccessMessage('your payment successfully completed')
     }
     toast.success('payment success')
     setPLoading(false)

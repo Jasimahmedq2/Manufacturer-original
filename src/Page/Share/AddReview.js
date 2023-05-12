@@ -1,11 +1,10 @@
-import { async } from '@firebase/util';
 import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import auth from '../../firebase.init';
-import { FaStar } from "react-icons/fa";
-import { Container, Radio, Rating } from "../DashBoard/user/RatingStyles";
 import { useForm } from 'react-hook-form';
+import { FaStar } from "react-icons/fa";
 import { toast } from 'react-toastify';
+import auth from '../../firebase.init';
+import { Container, Radio, Rating } from "../DashBoard/user/RatingStyles";
 
 
 const AddReview = () => {
@@ -20,10 +19,9 @@ const AddReview = () => {
       email: user.email,
       description: data.description,
       rate: rate
-
     }
 
-    fetch('https://tools-manufacturer.onrender.com/review', {
+    fetch('https://dull-puce-basket-clam-sari.cyclic.app/review/', {
       method: 'POST',
       headers: {
 
@@ -35,7 +33,8 @@ const AddReview = () => {
     })
       .then(res => res.json())
       .then(result => {
-        if (result.insertedId) {
+        if (result
+          ) {
           toast.success('Thanks for your valueAble Review')
           setRate(0)
         }

@@ -5,7 +5,7 @@ const MyOrderModal = ({ orderModal, setOrderModal, refetch }) => {
 
   const handleDeleteOrder = (id) => {
     console.log("ordermodal", orderModal)
-    fetch(`https://tools-manufacturer.onrender.com/purchase/${id}`, {
+    fetch(`https://dull-puce-basket-clam-sari.cyclic.app/purchase/delete/${id}`, {
       method: 'DELETE',
       headers: {
         authorization: `Bearer ${localStorage.getItem('accessToken')}`

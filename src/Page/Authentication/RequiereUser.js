@@ -1,7 +1,6 @@
 import React from 'react';
-import { useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { Navigate, useLocation } from 'react-router-dom';
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 import useAdmin from '../../Hooks/useAdmin';
@@ -17,8 +16,8 @@ const RequireUser = ({ children }) => {
 
   if (admin) {  
     console.log(admin)
-    toast.error('only user can access this route')
-    return <Navigate to='/' state={{ from: location }} replace ></Navigate>
+    toast.success('you are a admin this route just for normal user. who want to purchase any tool. you can add product and manage website as well.')
+    return <Navigate to='/dashboard' state={{ from: location }} replace ></Navigate>
   }
 
   return children;

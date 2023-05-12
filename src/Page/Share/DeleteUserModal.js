@@ -1,15 +1,13 @@
 import React from 'react';
 import { toast } from 'react-toastify';
 
-import Loading from './Loading';
-import auth from '../../firebase.init';
 
 
 const DeleteUserModal = ({ deleteUserModal,  setDeleteUserModal, refetch }) => {
 
 
   const handleDeleteUser = (email) => {
-    fetch(`https://tools-manufacturer.onrender.com/user/${email}`, {
+    fetch(`https://dull-puce-basket-clam-sari.cyclic.app/user/delete/${email}`, {
       method: 'DELETE',
       headers: {
         authorization: `Bearer ${localStorage.getItem('accessToken')}`

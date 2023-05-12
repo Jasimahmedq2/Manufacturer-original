@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react"
-import { useQuery } from "react-query"
 
 const useServices = () => {
   const [services, setServices] = useState([])
 
   useEffect(() => {
-    fetch('https://tools-manufacturer.onrender.com/service')
+    fetch('https://dull-puce-basket-clam-sari.cyclic.app/tools/service')
     .then(res => res.json())
     .then(data => setServices(data))
   },[])

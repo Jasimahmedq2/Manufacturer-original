@@ -1,5 +1,4 @@
 import React from 'react';
-import { toast } from 'react-toastify';
 
 const ProductDeleteModal = ({ productDelete, setProductDelete,  services, setServices}) => {
 
@@ -10,7 +9,7 @@ const ProductDeleteModal = ({ productDelete, setProductDelete,  services, setSer
     const presentData = services.filter(service => service._id !== productDelete._id)
     setServices(presentData)
 
-    fetch(`https://tools-manufacturer.onrender.com/service/${id}`, {
+    fetch(`https://dull-puce-basket-clam-sari.cyclic.app/tools/service/${id}`, {
       method: 'DELETE',
 
       headers: {

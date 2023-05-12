@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 const useToken = user => {
   const [token, setToken] = useState('');
 
@@ -6,7 +6,7 @@ const useToken = user => {
     const email = user?.user?.email;
     const currentEmail = {email: email}
     if(email){
-      fetch(`https://tools-manufacturer.onrender.com/user/${email}`, {
+      fetch(`https://dull-puce-basket-clam-sari.cyclic.app/user/login/${email}`, {
         method: 'PUT',
         headers:{
           'content-type' : 'application/json'
