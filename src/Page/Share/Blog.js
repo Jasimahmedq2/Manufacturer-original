@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Block = () => {
+const Blog = () => {
   return (
-    <div className='grid grid-cols-1 gap-5 mx-5 text-xl font-serif'>
+    <div className='grid grid-cols-1 gap-5 mx-5 text-xl font-serif '>
       <div tabindex="0" className="collapse group">
         <div className="collapse-title bg-base-100 text-black  group-focus:bg-base-200 group-focus:text-black-content ">
           <h2>How will you improve the performance of a React Application?</h2>
@@ -73,4 +73,4 @@ const Block = () => {
   );
 };
 
-export default Block;
+export default Blog;

@@ -4,7 +4,8 @@ import "./Tool.css";
 import { motion } from "framer-motion";
 const Tool = ({ service }) => {
   const { id } = useParams();
-  const { _id, name, image, menimum, available, title, price } = service;
+  console.log({ service });
+  const { _id, name, image, minimum, available, title, price } = service;
   const navigate = useNavigate();
   const handlePurchase = (id) => {
     navigate(`/purchase/${id}`);
@@ -22,24 +23,22 @@ const Tool = ({ service }) => {
         <img src={image} alt="Shoes" className="rounded-xl image-style" />
       </figure>
       <div className="card-body items-start mb-4">
-        <h2>{_id}</h2>
-        <h2 className="font-bold text-2xl">
-          Name: <span className="font-bold text-1xl text-primary">{name}</span>
+        <h2 className="font-bold text-xl">
+          Type: <span className="font-bold text-1xl">{name}</span>
         </h2>
         <h2 className="font-bold text-xl">
-          minimum quantity:{" "}
-          <span className="font-bold text-1xl text-primary"></span>
+          Minimum qnt:{" "}
+          <span className="font-bold text-1xl">{minimum}</span>
         </h2>
         <h2 className="font-bold text-xl">
-          available product:{" "}
-          <span className="font-bold text-1xl text-primary">{available}</span>
+          Available qnt: <span className="font-bold text-1xl">{available}</span>
         </h2>
-        <h2 className="font-bold text-xl text-primary ">
-          price: <span className="font-bold text-2xl text-white">{price}</span>
+        <h2 className="font-bold text-xl">
+          Price: <span className="font-bold text-2xl text-white">{price}</span>
         </h2>
 
-        <h2 className="font-bold text-xl text-primary text-start">
-          title: <span className="font-bold text-xl text-white">{title}</span>
+        <h2 className="font-bold text-xl text-start">
+          Title: <span className="font-bold text-xl text-white">{title}</span>
         </h2>
         <div>
           <button

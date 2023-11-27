@@ -23,7 +23,7 @@ const Reviews = () => {
       .then(data => setReviews(data))
   }, [])
   return (
-    <div className='py-12 px-6'>
+    <div className='mt-16 py-12 px-6'>
       <Swiper
 
         modules={[Autoplay]}
